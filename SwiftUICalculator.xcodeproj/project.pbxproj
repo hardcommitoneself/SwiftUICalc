@@ -11,6 +11,7 @@
 		A9A2AAC627BA2A5A009AAE69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAC527BA2A5A009AAE69 /* ContentView.swift */; };
 		A9A2AAC827BA2A5C009AAE69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */; };
 		A9A2AACB27BA2A5C009AAE69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AACA27BA2A5C009AAE69 /* Preview Assets.xcassets */; };
+		A9A2AAD427BA2ABA009AAE69 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAD327BA2ABA009AAE69 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		A9A2AAC527BA2A5A009AAE69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A2AACA27BA2A5C009AAE69 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A9A2AAD327BA2ABA009AAE69 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,8 @@
 		A9A2AAC227BA2A5A009AAE69 /* SwiftUICalculator */ = {
 			isa = PBXGroup;
 			children = (
+				A9A2AAD127BA2A7A009AAE69 /* Scenes */,
 				A9A2AAC327BA2A5A009AAE69 /* SwiftUICalculatorApp.swift */,
-				A9A2AAC527BA2A5A009AAE69 /* ContentView.swift */,
 				A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */,
 				A9A2AAC927BA2A5C009AAE69 /* Preview Content */,
 			);
@@ -65,6 +67,23 @@
 				A9A2AACA27BA2A5C009AAE69 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A9A2AAD127BA2A7A009AAE69 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AAD227BA2AA7009AAE69 /* Main */,
+				A9A2AAC527BA2A5A009AAE69 /* ContentView.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A9A2AAD227BA2AA7009AAE69 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AAD327BA2ABA009AAE69 /* MainView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9A2AAC627BA2A5A009AAE69 /* ContentView.swift in Sources */,
+				A9A2AAD427BA2ABA009AAE69 /* MainView.swift in Sources */,
 				A9A2AAC427BA2A5A009AAE69 /* SwiftUICalculatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
