@@ -12,6 +12,11 @@
 		A9A2AAC827BA2A5C009AAE69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */; };
 		A9A2AACB27BA2A5C009AAE69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AACA27BA2A5C009AAE69 /* Preview Assets.xcassets */; };
 		A9A2AAD427BA2ABA009AAE69 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAD327BA2ABA009AAE69 /* MainView.swift */; };
+		A9A2AAD827BCF21D009AAE69 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAD727BCF21D009AAE69 /* Montserrat-Bold.ttf */; };
+		A9A2AADE27BCF41F009AAE69 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AADD27BCF41F009AAE69 /* Colors.swift */; };
+		A9A2AAE027BD0249009AAE69 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AADF27BD0249009AAE69 /* Fonts.swift */; };
+		A9A2AAE527BD1BB0009AAE69 /* Digital-7Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE427BD1BB0009AAE69 /* Digital-7Mono.ttf */; };
+		A9A2AAE727BD1D2E009AAE69 /* Museo-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,12 @@
 		A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A2AACA27BA2A5C009AAE69 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A9A2AAD327BA2ABA009AAE69 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A9A2AAD727BCF21D009AAE69 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		A9A2AADD27BCF41F009AAE69 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		A9A2AADF27BD0249009AAE69 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		A9A2AAE127BD08B3009AAE69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A9A2AAE427BD1BB0009AAE69 /* Digital-7Mono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Digital-7Mono.ttf"; sourceTree = "<group>"; };
+		A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Museo-700.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +64,10 @@
 		A9A2AAC227BA2A5A009AAE69 /* SwiftUICalculator */ = {
 			isa = PBXGroup;
 			children = (
+				A9A2AAE827BD230D009AAE69 /* Support */,
+				A9A2AAE127BD08B3009AAE69 /* Info.plist */,
+				A9A2AAD627BCF185009AAE69 /* Fonts */,
+				A9A2AAD527BCF08D009AAE69 /* Constants */,
 				A9A2AAD127BA2A7A009AAE69 /* Scenes */,
 				A9A2AAC327BA2A5A009AAE69 /* SwiftUICalculatorApp.swift */,
 				A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */,
@@ -84,6 +99,32 @@
 				A9A2AAD327BA2ABA009AAE69 /* MainView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		A9A2AAD527BCF08D009AAE69 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AADD27BCF41F009AAE69 /* Colors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A9A2AAD627BCF185009AAE69 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AAE427BD1BB0009AAE69 /* Digital-7Mono.ttf */,
+				A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */,
+				A9A2AAD727BCF21D009AAE69 /* Montserrat-Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A9A2AAE827BD230D009AAE69 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AADF27BD0249009AAE69 /* Fonts.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +187,9 @@
 			files = (
 				A9A2AACB27BA2A5C009AAE69 /* Preview Assets.xcassets in Resources */,
 				A9A2AAC827BA2A5C009AAE69 /* Assets.xcassets in Resources */,
+				A9A2AAE727BD1D2E009AAE69 /* Museo-700.otf in Resources */,
+				A9A2AAE527BD1BB0009AAE69 /* Digital-7Mono.ttf in Resources */,
+				A9A2AAD827BCF21D009AAE69 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +201,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9A2AAC627BA2A5A009AAE69 /* ContentView.swift in Sources */,
+				A9A2AAE027BD0249009AAE69 /* Fonts.swift in Sources */,
+				A9A2AADE27BCF41F009AAE69 /* Colors.swift in Sources */,
 				A9A2AAD427BA2ABA009AAE69 /* MainView.swift in Sources */,
 				A9A2AAC427BA2A5A009AAE69 /* SwiftUICalculatorApp.swift in Sources */,
 			);
@@ -292,9 +338,11 @@
 				DEVELOPMENT_TEAM = LC826B8LG8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftUICalculator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -321,9 +369,11 @@
 				DEVELOPMENT_TEAM = LC826B8LG8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftUICalculator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
