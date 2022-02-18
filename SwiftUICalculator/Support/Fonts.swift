@@ -10,6 +10,6 @@ extension Font {
     }
     
     static func digital(size: CGFloat = 40) -> Font {
-        return Font.custom("Digital-7Mono", size: size)
+        return Font.custom("DigitalNumbers-Regular", size: size)
     }
 }

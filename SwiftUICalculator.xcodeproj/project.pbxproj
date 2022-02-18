@@ -15,8 +15,12 @@
 		A9A2AAD827BCF21D009AAE69 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAD727BCF21D009AAE69 /* Montserrat-Bold.ttf */; };
 		A9A2AADE27BCF41F009AAE69 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AADD27BCF41F009AAE69 /* Colors.swift */; };
 		A9A2AAE027BD0249009AAE69 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AADF27BD0249009AAE69 /* Fonts.swift */; };
-		A9A2AAE527BD1BB0009AAE69 /* Digital-7Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE427BD1BB0009AAE69 /* Digital-7Mono.ttf */; };
 		A9A2AAE727BD1D2E009AAE69 /* Museo-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */; };
+		A9A2AAEA27BD71F6009AAE69 /* DigitalNumbers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE927BD71F6009AAE69 /* DigitalNumbers-Regular.ttf */; };
+		A9A2AAEC27C00E40009AAE69 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAEB27C00E40009AAE69 /* KeyType.swift */; };
+		A9A2AAEE27C00FFA009AAE69 /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAED27C00FFA009AAE69 /* ItemInfo.swift */; };
+		A9A2AAF027C01128009AAE69 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAEF27C01128009AAE69 /* MainViewModel.swift */; };
+		A9A2AAF227C01182009AAE69 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAF127C01182009AAE69 /* OperationType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +34,12 @@
 		A9A2AADD27BCF41F009AAE69 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A9A2AADF27BD0249009AAE69 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		A9A2AAE127BD08B3009AAE69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A9A2AAE427BD1BB0009AAE69 /* Digital-7Mono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Digital-7Mono.ttf"; sourceTree = "<group>"; };
 		A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Museo-700.otf"; sourceTree = "<group>"; };
+		A9A2AAE927BD71F6009AAE69 /* DigitalNumbers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DigitalNumbers-Regular.ttf"; sourceTree = "<group>"; };
+		A9A2AAEB27C00E40009AAE69 /* KeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyType.swift; sourceTree = "<group>"; };
+		A9A2AAED27C00FFA009AAE69 /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfo.swift; sourceTree = "<group>"; };
+		A9A2AAEF27C01128009AAE69 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		A9A2AAF127C01182009AAE69 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +76,7 @@
 				A9A2AAE127BD08B3009AAE69 /* Info.plist */,
 				A9A2AAD627BCF185009AAE69 /* Fonts */,
 				A9A2AAD527BCF08D009AAE69 /* Constants */,
-				A9A2AAD127BA2A7A009AAE69 /* Scenes */,
+				A9A2AAD127BA2A7A009AAE69 /* Screens */,
 				A9A2AAC327BA2A5A009AAE69 /* SwiftUICalculatorApp.swift */,
 				A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */,
 				A9A2AAC927BA2A5C009AAE69 /* Preview Content */,
@@ -84,19 +92,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		A9A2AAD127BA2A7A009AAE69 /* Scenes */ = {
+		A9A2AAD127BA2A7A009AAE69 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				A9A2AAD227BA2AA7009AAE69 /* Main */,
 				A9A2AAC527BA2A5A009AAE69 /* ContentView.swift */,
 			);
-			path = Scenes;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		A9A2AAD227BA2AA7009AAE69 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				A9A2AAD327BA2ABA009AAE69 /* MainView.swift */,
+				A9A2AAF727C01923009AAE69 /* Model */,
+				A9A2AAF627C0191A009AAE69 /* ViewModels */,
+				A9A2AAF327C018CC009AAE69 /* Views */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -112,9 +122,9 @@
 		A9A2AAD627BCF185009AAE69 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				A9A2AAE427BD1BB0009AAE69 /* Digital-7Mono.ttf */,
 				A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */,
 				A9A2AAD727BCF21D009AAE69 /* Montserrat-Bold.ttf */,
+				A9A2AAE927BD71F6009AAE69 /* DigitalNumbers-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -125,6 +135,32 @@
 				A9A2AADF27BD0249009AAE69 /* Fonts.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		A9A2AAF327C018CC009AAE69 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AAD327BA2ABA009AAE69 /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9A2AAF627C0191A009AAE69 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AAEF27C01128009AAE69 /* MainViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A9A2AAF727C01923009AAE69 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2AAEB27C00E40009AAE69 /* KeyType.swift */,
+				A9A2AAED27C00FFA009AAE69 /* ItemInfo.swift */,
+				A9A2AAF127C01182009AAE69 /* OperationType.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,7 +224,7 @@
 				A9A2AACB27BA2A5C009AAE69 /* Preview Assets.xcassets in Resources */,
 				A9A2AAC827BA2A5C009AAE69 /* Assets.xcassets in Resources */,
 				A9A2AAE727BD1D2E009AAE69 /* Museo-700.otf in Resources */,
-				A9A2AAE527BD1BB0009AAE69 /* Digital-7Mono.ttf in Resources */,
+				A9A2AAEA27BD71F6009AAE69 /* DigitalNumbers-Regular.ttf in Resources */,
 				A9A2AAD827BCF21D009AAE69 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,8 +239,12 @@
 				A9A2AAC627BA2A5A009AAE69 /* ContentView.swift in Sources */,
 				A9A2AAE027BD0249009AAE69 /* Fonts.swift in Sources */,
 				A9A2AADE27BCF41F009AAE69 /* Colors.swift in Sources */,
+				A9A2AAEE27C00FFA009AAE69 /* ItemInfo.swift in Sources */,
+				A9A2AAF227C01182009AAE69 /* OperationType.swift in Sources */,
+				A9A2AAEC27C00E40009AAE69 /* KeyType.swift in Sources */,
 				A9A2AAD427BA2ABA009AAE69 /* MainView.swift in Sources */,
 				A9A2AAC427BA2A5A009AAE69 /* SwiftUICalculatorApp.swift in Sources */,
+				A9A2AAF027C01128009AAE69 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
