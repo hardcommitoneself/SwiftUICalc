@@ -21,6 +21,8 @@
 		A9A2AAEE27C00FFA009AAE69 /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAED27C00FFA009AAE69 /* ItemInfo.swift */; };
 		A9A2AAF027C01128009AAE69 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAEF27C01128009AAE69 /* MainViewModel.swift */; };
 		A9A2AAF227C01182009AAE69 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAF127C01182009AAE69 /* OperationType.swift */; };
+		A9A2AAF927C38B09009AAE69 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAF827C38B09009AAE69 /* ButtonView.swift */; };
+		A9A2AAFB27C38B66009AAE69 /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAFA27C38B66009AAE69 /* ButtonViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		A9A2AAED27C00FFA009AAE69 /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfo.swift; sourceTree = "<group>"; };
 		A9A2AAEF27C01128009AAE69 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A9A2AAF127C01182009AAE69 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
+		A9A2AAF827C38B09009AAE69 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		A9A2AAFA27C38B66009AAE69 /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				A9A2AAD327BA2ABA009AAE69 /* MainView.swift */,
+				A9A2AAF827C38B09009AAE69 /* ButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				A9A2AAEF27C01128009AAE69 /* MainViewModel.swift */,
+				A9A2AAFA27C38B66009AAE69 /* ButtonViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -237,7 +243,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9A2AAC627BA2A5A009AAE69 /* ContentView.swift in Sources */,
+				A9A2AAFB27C38B66009AAE69 /* ButtonViewModel.swift in Sources */,
 				A9A2AAE027BD0249009AAE69 /* Fonts.swift in Sources */,
+				A9A2AAF927C38B09009AAE69 /* ButtonView.swift in Sources */,
 				A9A2AADE27BCF41F009AAE69 /* Colors.swift in Sources */,
 				A9A2AAEE27C00FFA009AAE69 /* ItemInfo.swift in Sources */,
 				A9A2AAF227C01182009AAE69 /* OperationType.swift in Sources */,
