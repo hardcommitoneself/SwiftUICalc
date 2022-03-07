@@ -11,7 +11,7 @@ struct MainView: View {
                    spacing: 25) {
                 Text("Calculator")
                     .font(.museo())
-                ZStack() {
+                ZStack {
                     LinearGradient(
                         colors: [
                             Colors.lightGreen,
@@ -24,19 +24,16 @@ struct MainView: View {
                     
                     ZStack(alignment: .leading) {
                         Text("8888888888")
-                            .font(.digital(size: 40))
                             .opacity(0.08)
                         Text(viewModel.calculationText)
-                            .font(.digital(size: 40))
                     }
+                    .font(.digital(size: 40))
                 }
                 .frame(height: 100)
                 
                 GeometryReader { geometryReader in
-                    let padWidth = geometryReader.size.width
-                        - (CGFloat(viewModel.columnCount - 1) * 16)
-                    let width = padWidth / CGFloat(viewModel.columnCount)
-
+                    let columnWidth = viewModel.getColumnWidth(geometryReader.size.width)
+                    
                     VStack(spacing: 16) {
                         ForEach(0..<viewModel.rowsCount) { row in
                             HStack(spacing: 16) {
@@ -45,9 +42,7 @@ struct MainView: View {
                                         .getItemViewModel(atRow: row, column: column)
                                     
                                     ButtonView(viewModel: itemViewModel,
-                                               width: width) {
-                                        
-                                    }
+                                               columnWidth: columnWidth)
                                 }
                             }
                         }

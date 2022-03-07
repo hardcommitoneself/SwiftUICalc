@@ -7,9 +7,22 @@ enum OperationType: String {
     case plus = "+"
     case equal = "="
     
-    enum UnaryOperationType: String {
-        case allClear = "AC"
-        case toggleSign = "+/-"
-        case percent = "%"
+    case allClear = "AC"
+    case toggleSign = "+/-"
+    case percent = "%"
+    
+    func performOperation(num1: Decimal, num2: Decimal) -> Decimal {
+        switch self {
+        case .division:
+            return num1 / num2
+        case .multiply:
+            return num1 * num2
+        case .minus:
+            return num1 - num2
+        case .plus:
+            return num1 + num2
+        default:
+            return 0
+        }
     }
 }

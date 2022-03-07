@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A95370F427D5BDC5008583F1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95370F327D5BDC5008583F1 /* State.swift */; };
 		A9A2AAC427BA2A5A009AAE69 /* SwiftUICalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAC327BA2A5A009AAE69 /* SwiftUICalculatorApp.swift */; };
 		A9A2AAC627BA2A5A009AAE69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAC527BA2A5A009AAE69 /* ContentView.swift */; };
 		A9A2AAC827BA2A5C009AAE69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A95370F327D5BDC5008583F1 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A9A2AAC027BA2A5A009AAE69 /* SwiftUICalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUICalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A2AAC327BA2A5A009AAE69 /* SwiftUICalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICalculatorApp.swift; sourceTree = "<group>"; };
 		A9A2AAC527BA2A5A009AAE69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,12 +79,12 @@
 			isa = PBXGroup;
 			children = (
 				A9A2AAE827BD230D009AAE69 /* Support */,
-				A9A2AAE127BD08B3009AAE69 /* Info.plist */,
 				A9A2AAD627BCF185009AAE69 /* Fonts */,
 				A9A2AAD527BCF08D009AAE69 /* Constants */,
 				A9A2AAD127BA2A7A009AAE69 /* Screens */,
 				A9A2AAC327BA2A5A009AAE69 /* SwiftUICalculatorApp.swift */,
 				A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */,
+				A9A2AAE127BD08B3009AAE69 /* Info.plist */,
 				A9A2AAC927BA2A5C009AAE69 /* Preview Content */,
 			);
 			path = SwiftUICalculator;
@@ -165,6 +167,7 @@
 				A9A2AAEB27C00E40009AAE69 /* KeyType.swift */,
 				A9A2AAED27C00FFA009AAE69 /* ItemInfo.swift */,
 				A9A2AAF127C01182009AAE69 /* OperationType.swift */,
+				A95370F327D5BDC5008583F1 /* State.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				A9A2AAD427BA2ABA009AAE69 /* MainView.swift in Sources */,
 				A9A2AAC427BA2A5A009AAE69 /* SwiftUICalculatorApp.swift in Sources */,
 				A9A2AAF027C01128009AAE69 /* MainViewModel.swift in Sources */,
+				A95370F427D5BDC5008583F1 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
