@@ -60,18 +60,23 @@ class ButtonViewModel: ObservableObject {
         case .primaryOperation(OperationType.equal.rawValue):
             delegate?.didEqualTap()
         case .primaryOperation:
-            recolorOperationButton()
+            colorizeOperationButton()
             delegate?.didPrimaryOperationTap(operationType)
         case .secondaryOperation:
-            recolorOperationButton()
+            colorizeOperationButton()
             delegate?.didSecondaryOperationTap(operationType)
         }
     }
     
     // MARK: UI methods
-    private func recolorOperationButton() {
+    private func colorizeOperationButton() {
         backgroundColor = Colors.lightGray
         foregroundColor = Colors.darkBlue
+    }
+    
+    private func resetOperationButtonColor() {
+        backgroundColor = Colors.darkBlue
+        foregroundColor = Colors.white
     }
     
     func getButtonWidth(width: CGFloat) -> CGFloat {

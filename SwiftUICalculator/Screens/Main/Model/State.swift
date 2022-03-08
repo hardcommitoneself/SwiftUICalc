@@ -1,6 +1,6 @@
 import Foundation
 
-enum State {
+enum Staate {
     case beginning
     case afterFirstOperation
     case afterSecondNumber
