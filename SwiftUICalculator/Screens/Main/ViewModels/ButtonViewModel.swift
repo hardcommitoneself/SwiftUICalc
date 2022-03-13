@@ -1,11 +1,11 @@
 import SwiftUI
 
 protocol ButtonViewModelDelegate: AnyObject {
-    func didNumberTap(_ number: String)
-    func didUnaryOperationTap(_ operation: OperationType)
-    func didPrimaryOperationTap(_ operation: OperationType)
-    func didSecondaryOperationTap(_ operation: OperationType)
-    func didEqualTap()
+    func didTapDigit(_ number: String)
+    func didTapUnaryOperation(_ operation: OperationType)
+    func didTapPrimaryOperation(_ operation: OperationType)
+    func didTapSecondaryOperation(_ operation: OperationType)
+    func didTapEqual()
 }
 
 class ButtonViewModel: ObservableObject {
@@ -14,6 +14,7 @@ class ButtonViewModel: ObservableObject {
     
     @Published var backgroundColor: Color
     @Published var foregroundColor: Color
+    
     private var item: ItemInfo
     
     private var operationType: OperationType {
@@ -54,31 +55,21 @@ class ButtonViewModel: ObservableObject {
     func action() {
         switch item.keyType {
         case .number:
-            delegate?.didNumberTap(item.keyType.title)
+            delegate?.didTapDigit(item.keyType.title)
         case .unaryOperation:
-            delegate?.didUnaryOperationTap(operationType)
+            delegate?.didTapUnaryOperation(operationType)
         case .primaryOperation(OperationType.equal.rawValue):
-            delegate?.didEqualTap()
+            delegate?.didTapEqual()
         case .primaryOperation:
             colorizeOperationButton()
-            delegate?.didPrimaryOperationTap(operationType)
+            delegate?.didTapPrimaryOperation(operationType)
         case .secondaryOperation:
             colorizeOperationButton()
-            delegate?.didSecondaryOperationTap(operationType)
+            delegate?.didTapSecondaryOperation(operationType)
         }
     }
     
     // MARK: UI methods
-    private func colorizeOperationButton() {
-        backgroundColor = Colors.lightGray
-        foregroundColor = Colors.darkBlue
-    }
-    
-    private func resetOperationButtonColor() {
-        backgroundColor = Colors.darkBlue
-        foregroundColor = Colors.white
-    }
-    
     func getButtonWidth(width: CGFloat) -> CGFloat {
         let itemSize = CGFloat(item.size)
         return (width * itemSize) + (itemSize - 1) * 16
@@ -92,5 +83,15 @@ class ButtonViewModel: ObservableObject {
         default:
             return 29
         }
+    }
+    
+    private func colorizeOperationButton() {
+        backgroundColor = Colors.lightGray
+        foregroundColor = Colors.darkBlue
+    }
+    
+    private func resetOperationButtonColor() {
+        backgroundColor = Colors.darkBlue
+        foregroundColor = Colors.white
     }
 }

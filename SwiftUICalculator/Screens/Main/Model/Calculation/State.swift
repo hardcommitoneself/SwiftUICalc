@@ -1,7 +1,7 @@
 import Foundation
 
-protocol State: AnyObject {
-    func handleNumber(calculator: Calculator, withValue number: String) -> State?
+protocol State {
+    func handleDigit(calculator: Calculator, withValue digit: String) -> State?
     func handleUnaryOperation(calculator: Calculator,
                               ofType type: OperationType,
                               number: Decimal?) -> State?
@@ -16,7 +16,7 @@ protocol State: AnyObject {
 }
 
 extension State {
-    func handleNumber(calculator: Calculator, withValue number: String) -> State? { return nil }
+    func handleDigit(calculator: Calculator, withValue digit: String) -> State? { return nil }
     func handleUnaryOperation(calculator: Calculator,
                               ofType type: OperationType,
                               number: Decimal? = nil) -> State? { return nil }

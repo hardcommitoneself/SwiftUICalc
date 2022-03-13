@@ -2,8 +2,8 @@ import Foundation
 
 class BeforeCalculationState: State {
     
-    func handleNumber(calculator: Calculator, withValue number: String) -> State? {
-        calculator.appendText(number)
+    func handleDigit(calculator: Calculator, withValue digit: String) -> State? {
+        calculator.appendText(digit)
         return nil
     }
     
@@ -17,11 +17,8 @@ class BeforeCalculationState: State {
                                          ofType type: OperationType,
                                          number: Decimal? = nil) -> State? {
         calculator.storeCalculationInfo(result: number,
-                                       numberToStore: number,
-                                       operationToStore: type)
-//        context?.currentResult = number ?? 0
-//        context?.storedNumber = number ?? 0
-//        context?.storedOperation = type
+                                        numberToStore: number,
+                                        operationToStore: type)
         return AfterFirstOperationState()
     }
     
@@ -29,13 +26,9 @@ class BeforeCalculationState: State {
                                   ofType type: OperationType,
                                   number: Decimal? = nil) -> State? {
         calculator.storeCalculationInfo(result: number,
-                                       numberToStore: number,
-                                       operationToStore: type,
-                                       secondaryOperation: type)
-//        context?.currentResult = number ?? 0
-//        context?.storedNumber = number ?? 0
-//        context?.lastSecondaryOperation = type
-//        context?.storedOperation = type
+                                        numberToStore: number,
+                                        operationToStore: type,
+                                        secondaryOperation: type)
         return AfterFirstOperationState()
     }
 }

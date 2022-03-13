@@ -69,6 +69,7 @@ final class MainViewModel: ObservableObject {
         setupDelegates()
     }
     
+    // MARK: Public methods
     func getItemsCount(atRow rowIndex: Int) -> Int {
         itemViewModels[rowIndex].count
     }
@@ -82,6 +83,7 @@ final class MainViewModel: ObservableObject {
         return padWidth / CGFloat(columnCount)
     }
     
+    // MARK: Private methods
     private func setupDelegates() {
         calculationText = calculator.calculationText
         itemViewModels.forEach { row in
@@ -90,31 +92,32 @@ final class MainViewModel: ObservableObject {
     }
 }
 
+// MARK: ButtonViewModelDelegate
 extension MainViewModel: ButtonViewModelDelegate {
-    func didNumberTap(_ number: String) {
+    func didTapDigit(_ number: String) {
         calculator.handleDigit(withValue: number)
         calculationText = calculator.calculationText
     }
     
-    func didUnaryOperationTap(_ operation: OperationType) {
+    func didTapUnaryOperation(_ operation: OperationType) {
         
     }
     
-    func didPrimaryOperationTap(_ operation: OperationType) {
+    func didTapPrimaryOperation(_ operation: OperationType) {
         let tempNumber = Decimal(string: calculationText
                                     .replacingOccurrences(of: ",", with: "."))
         calculator.handlePrimaryOperation(ofType: operation, number: tempNumber)
         calculationText = calculator.calculationText
     }
     
-    func didSecondaryOperationTap(_ operation: OperationType) {
+    func didTapSecondaryOperation(_ operation: OperationType) {
         let tempNumber = Decimal(string: calculationText
                                     .replacingOccurrences(of: ",", with: "."))
         calculator.handleSecondaryOperation(ofType: operation, number: tempNumber)
         calculationText = calculator.calculationText
     }
     
-    func didEqualTap() {
+    func didTapEqual() {
         let tempNumber = Decimal(string: calculationText
                                     .replacingOccurrences(of: ",", with: "."))
         calculator.handleEqualOperation(number: tempNumber)

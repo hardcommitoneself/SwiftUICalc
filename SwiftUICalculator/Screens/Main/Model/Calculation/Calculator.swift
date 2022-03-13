@@ -5,8 +5,8 @@ class Calculator {
     private(set) var calculationText: String
     
     private var currentResult: Decimal
-    private var lastSecondaryOperation: OperationType
     private var storedNumber: Decimal
+    private var lastSecondaryOperation: OperationType
     private var storedOperation: OperationType
     
     private var state: State
@@ -20,8 +20,9 @@ class Calculator {
         storedOperation = .plus
     }
     
+    // MARK: Handling input methods
     func handleDigit(withValue digit: String) {
-        transitionTo(state: state.handleNumber(calculator: self, withValue: digit))
+        transitionTo(state: state.handleDigit(calculator: self, withValue: digit))
     }
     
     func handleUnaryOperation(ofType type: OperationType, number: Decimal? = nil) {
@@ -46,15 +47,7 @@ class Calculator {
         transitionTo(state: state.handleEqualOperation(calculator: self, number: number))
     }
     
-    // MARK: Service methods
-    private func performOperation(ofType type: OperationType,
-                                  withSecondNumber number: Decimal?) -> Decimal {
-        return type.performOperation(num1: currentResult,
-                                     num2: number ?? storedNumber)
-    }
-}
-
-extension Calculator {
+    // MARK: Public service methods
     func transitionTo(state: State?) {
         guard let state = state else { return }
         self.state = state
@@ -94,21 +87,23 @@ extension Calculator {
             num1: storedNumber,
             num2: secondNumber ?? storedNumber)
         return performOperation(ofType: lastSecondaryOperation,
-                                withSecondNumber: tempNumber)
+                                secondNumber: tempNumber)
     }
     
     /// Calculate stored operation.
     /// If second number is nil, operation will be performed with stored number
-    func calculateStoredOperation(secondNumber: Decimal?) -> Decimal {
+    func calculateStoredOperation(secondNumber: Decimal?,
+                                  withStoredNumber isStoredNumber: Bool = false) -> Decimal {
         return performOperation(ofType: storedOperation,
-                                withSecondNumber: secondNumber)
+                                firstNumber: isStoredNumber ? storedNumber : nil,
+                                secondNumber: secondNumber)
     }
     
     /// Calculate last stored secondary operation.
     /// If second number is nil, operation will be performed with stored number
     func calculateSecondaryOperation(secondNumber: Decimal?) -> Decimal {
         return performOperation(ofType: lastSecondaryOperation,
-                                withSecondNumber: secondNumber)
+                                secondNumber: secondNumber)
     }
     
     /// Function to store new entered numbers and operations.
@@ -132,5 +127,13 @@ extension Calculator {
         if let secondaryOperation = secondaryOperation {
             lastSecondaryOperation = secondaryOperation
         }
+    }
+    
+    // MARK: Private methods
+    private func performOperation(ofType type: OperationType,
+                                  firstNumber: Decimal? = nil,
+                                  secondNumber: Decimal? = nil) -> Decimal {
+        return type.performOperation(num1: firstNumber ?? currentResult,
+                                     num2: secondNumber ?? storedNumber)
     }
 }
