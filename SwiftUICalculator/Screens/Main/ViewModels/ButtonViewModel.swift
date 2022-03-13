@@ -10,11 +10,11 @@ protocol ButtonViewModelDelegate: AnyObject {
 
 class ButtonViewModel: ObservableObject {
     
-    var delegate: ButtonViewModelDelegate?
+    weak var delegate: ButtonViewModelDelegate?
     
     @Published var backgroundColor: Color
     @Published var foregroundColor: Color
-    @Published private var item: ItemInfo
+    private var item: ItemInfo
     
     private var operationType: OperationType {
         switch title {

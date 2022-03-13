@@ -1,25 +1,41 @@
 import Foundation
 
-class BeforeCalculationState: BaseState {
+class BeforeCalculationState: State {
     
-    override func handleNumber(withValue number: String) {
-        context?.appendText(number)
+    func handleNumber(calculator: Calculator, withValue number: String) -> State? {
+        calculator.appendText(number)
+        return nil
     }
     
-    override func handleUnaryOperation(ofType type: OperationType, number: Decimal? = nil) {}
-    
-    override func handlePrimaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        context?.currentResult = number ?? 0
-        context?.storedNumber = number ?? 0
-        context?.storedOperation = type
-        context?.transitionTo(state: AfterFirstOperationState())
+    func handleUnaryOperation(calculator: Calculator,
+                              ofType type: OperationType,
+                              number: Decimal? = nil) -> State? {
+        return nil
     }
     
-    override func handleSecondaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        context?.currentResult = number ?? 0
-        context?.storedNumber = number ?? 0
-        context?.lastSecondaryOperation = type
-        context?.storedOperation = type
-        context?.transitionTo(state: AfterFirstOperationState())
+    func handlePrimaryOperation(calculator: Calculator,
+                                         ofType type: OperationType,
+                                         number: Decimal? = nil) -> State? {
+        calculator.storeCalculationInfo(result: number,
+                                       numberToStore: number,
+                                       operationToStore: type)
+//        context?.currentResult = number ?? 0
+//        context?.storedNumber = number ?? 0
+//        context?.storedOperation = type
+        return AfterFirstOperationState()
+    }
+    
+    func handleSecondaryOperation(calculator: Calculator,
+                                  ofType type: OperationType,
+                                  number: Decimal? = nil) -> State? {
+        calculator.storeCalculationInfo(result: number,
+                                       numberToStore: number,
+                                       operationToStore: type,
+                                       secondaryOperation: type)
+//        context?.currentResult = number ?? 0
+//        context?.storedNumber = number ?? 0
+//        context?.lastSecondaryOperation = type
+//        context?.storedOperation = type
+        return AfterFirstOperationState()
     }
 }

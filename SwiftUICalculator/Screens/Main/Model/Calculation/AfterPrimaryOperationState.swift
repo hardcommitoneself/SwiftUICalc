@@ -1,50 +1,71 @@
 import Foundation
 
-class AfterPrimaryOperationState: BaseState {
+class AfterPrimaryOperationState: State {
     
-    override func handleNumber(withValue number: String) {
-        context?.replaceCurrentText(with: number)
-        context?.transitionTo(state: AfterPrimaryBlockNumberState())
+    func handleNumber(calculator: Calculator, withValue number: String) -> State? {
+        calculator.replaceText(with: number)
+        return AfterPrimaryBlockNumberState()
     }
     
-    override func handleUnaryOperation(ofType type: OperationType, number: Decimal? = nil) {}
-    
-    override func handlePrimaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        context?.storedOperation = type
+    func handleUnaryOperation(calculator: Calculator,
+                              ofType type: OperationType,
+                              number: Decimal? = nil) -> State? {
+        return nil
     }
     
-    override func handleSecondaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        guard let result = context?.currentResult,
-              let storedNumber = context?.storedNumber,
-              let operation = context?.lastSecondaryOperation else {
-            return
-        }
+    func handlePrimaryOperation(calculator: Calculator,
+                                ofType type: OperationType,
+                                number: Decimal? = nil) -> State? {
+        calculator.storeCalculationInfo(operationToStore: type)
+        return nil
+    }
+    
+    func handleSecondaryOperation(calculator: Calculator,
+                                  ofType type: OperationType,
+                                  number: Decimal? = nil) -> State? {
+        let result = calculator.calculateSecondaryOperation(secondNumber: nil)
+        calculator.storeCalculationInfo(
+            result: result,
+            numberToStore: result,
+            operationToStore: type,
+            secondaryOperation: type)
+        calculator.updateCalculationText()
         
-        context?.currentResult = operation.performOperation(
-            num1: result,
-            num2: storedNumber)
-        context?.storedNumber = context?.currentResult ?? 0
-        context?.lastSecondaryOperation = type
-        context?.storedOperation = type
-        context?.updateCalculationText()
-        context?.transitionTo(state: AfterFirstOperationState())
+//        guard let result = context?.currentResult,
+//              let storedNumber = context?.storedNumber,
+//              let operation = context?.lastSecondaryOperation else {
+//            return
+//        }
+//
+//        context?.currentResult = operation.performOperation(
+//            num1: result,
+//            num2: storedNumber)
+//        context?.storedNumber = context?.currentResult ?? 0
+//        context?.lastSecondaryOperation = type
+//        context?.storedOperation = type
+//        context?.updateCalculationText()
+        return AfterFirstOperationState()
     }
     
-    override func handleEqualOperation(number: Decimal? = nil) {
-        guard let result = context?.currentResult,
-              let storedNumber = context?.storedNumber,
-              let operation = context?.storedOperation,
-              let secondaryOperstion = context?.lastSecondaryOperation else {
-            return
-        }
+    func handleEqualOperation(calculator: Calculator, number: Decimal? = nil) -> State? {
+        let result = calculator.calculateMultipleOperations(secondNumber: number)
+        calculator.storeCalculationInfo(result: result)
+        calculator.updateCalculationText()
         
-        let tempNumber = operation.performOperation(
-            num1: storedNumber,
-            num2: number ?? 0)
-        context?.currentResult = secondaryOperstion.performOperation(
-            num1: result,
-            num2: tempNumber)
-        context?.updateCalculationText()
-        context?.transitionTo(state: AfterFirstOperationState())
+//        guard let result = context?.currentResult,
+//              let storedNumber = context?.storedNumber,
+//              let operation = context?.storedOperation,
+//              let secondaryOperstion = context?.lastSecondaryOperation else {
+//            return
+//        }
+//
+//        let tempNumber = operation.performOperation(
+//            num1: storedNumber,
+//            num2: number ?? 0)
+//        context?.currentResult = secondaryOperstion.performOperation(
+//            num1: result,
+//            num2: tempNumber)
+//        context?.updateCalculationText()
+        return AfterFirstOperationState()
     }
 }

@@ -1,66 +1,91 @@
 import Foundation
 
-class AfterPrimaryBlockNumberState: BaseState {
+class AfterPrimaryBlockNumberState: State {
     
-    override func handleNumber(withValue number: String) {
-        context?.appendText(number)
+    func handleNumber(calculator: Calculator, withValue number: String) -> State? {
+        calculator.appendText(number)
+        return nil
     }
     
-    override func handleUnaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        
+    func handleUnaryOperation(calculator: Calculator,
+                              ofType type: OperationType,
+                              number: Decimal? = nil) -> State? {
+        return nil
     }
     
-    override func handlePrimaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        guard let storedNumber = context?.storedNumber,
-              let operation = context?.storedOperation else {
-            return
-        }
+    func handlePrimaryOperation(calculator: Calculator,
+                                ofType type: OperationType,
+                                number: Decimal? = nil) -> State? {
+        let result = calculator.calculateStoredOperation(secondNumber: number)
+        calculator.storeCalculationInfo(numberToStore: result,
+                                        operationToStore: type)
+        calculator.updateCalculationText(with: result)
         
-        context?.storedNumber = operation.performOperation(
-            num1: storedNumber,
-            num2: number ?? 0)
-        context?.storedOperation = type
-        context?.updateCalculationText(with: context?.storedNumber)
-        context?.transitionTo(state: AfterPrimaryOperationState())
+//        guard let storedNumber = context?.storedNumber,
+//              let operation = context?.storedOperation else {
+//            return
+//        }
+//
+//        context?.storedNumber = operation.performOperation(
+//            num1: storedNumber,
+//            num2: number ?? 0)
+//        context?.storedOperation = type
+//        context?.updateCalculationText(with: context?.storedNumber)
+        return AfterPrimaryOperationState()
     }
     
-    override func handleSecondaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        guard let result = context?.currentResult,
-              let storedNumber = context?.storedNumber,
-              let operation = context?.storedOperation,
-              let secondaryOperation = context?.lastSecondaryOperation else {
-            return
-        }
+    func handleSecondaryOperation(calculator: Calculator,
+                                  ofType type: OperationType,
+                                  number: Decimal? = nil) -> State? {
+        let result = calculator.calculateMultipleOperations(secondNumber: number)
+        calculator.storeCalculationInfo(
+            result: result,
+            numberToStore: result,
+            operationToStore: type,
+            secondaryOperation: type)
+        calculator.updateCalculationText()
         
-        let tempResult = operation.performOperation(
-            num1: storedNumber,
-            num2: number ?? 0)
-        context?.currentResult = secondaryOperation.performOperation(
-            num1: result,
-            num2: tempResult)
-        context?.storedNumber = context?.currentResult ?? 0
-        context?.lastSecondaryOperation = type
-        context?.storedOperation = type
-        context?.updateCalculationText()
-        context?.transitionTo(state: AfterFirstOperationState())
+//        guard let result = context?.currentResult,
+//              let storedNumber = context?.storedNumber,
+//              let operation = context?.storedOperation,
+//              let secondaryOperation = context?.lastSecondaryOperation else {
+//            return
+//        }
+//
+//        let tempResult = operation.performOperation(
+//            num1: storedNumber,
+//            num2: number ?? 0)
+//        context?.currentResult = secondaryOperation.performOperation(
+//            num1: result,
+//            num2: tempResult)
+//        context?.storedNumber = context?.currentResult ?? 0
+//        context?.lastSecondaryOperation = type
+//        context?.storedOperation = type
+//        context?.updateCalculationText()
+        return AfterFirstOperationState()
     }
     
-    override func handleEqualOperation(number: Decimal? = nil) {
-        guard let result = context?.currentResult,
-              let storedNumber = context?.storedNumber,
-              let operation = context?.storedOperation,
-              let secondaryOperation = context?.lastSecondaryOperation else {
-            return
-        }
+    func handleEqualOperation(calculator: Calculator, number: Decimal? = nil) -> State? {
+        let result = calculator.calculateMultipleOperations(secondNumber: number)
+        calculator.storeCalculationInfo(result: result,
+                                        numberToStore: number)
+        calculator.updateCalculationText()
         
-        let tempResult = operation.performOperation(
-            num1: storedNumber,
-            num2: number ?? 0)
-        context?.currentResult = secondaryOperation.performOperation(
-            num1: result,
-            num2: tempResult)
-        context?.storedNumber = number ?? 0
-        context?.updateCalculationText()
-        context?.transitionTo(state: AfterFirstOperationState())
+//        guard let result = context?.currentResult,
+//              let storedNumber = context?.storedNumber,
+//              let operation = context?.storedOperation,
+//              let secondaryOperation = context?.lastSecondaryOperation else {
+//            return
+//        }
+//
+//        let tempResult = operation.performOperation(
+//            num1: storedNumber,
+//            num2: number ?? 0)
+//        context?.currentResult = secondaryOperation.performOperation(
+//            num1: result,
+//            num2: tempResult)
+//        context?.storedNumber = number ?? 0
+//        context?.updateCalculationText()
+        return AfterFirstOperationState()
     }
 }

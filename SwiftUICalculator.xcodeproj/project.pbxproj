@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A95370F427D5BDC5008583F1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95370F327D5BDC5008583F1 /* State.swift */; };
 		A95370F727D7399B008583F1 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95370F627D7399B008583F1 /* Calculator.swift */; };
-		A95370FB27D73C76008583F1 /* BaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95370FA27D73C76008583F1 /* BaseState.swift */; };
+		A95370FB27D73C76008583F1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95370FA27D73C76008583F1 /* State.swift */; };
 		A95370FD27D73DCD008583F1 /* BeforeCalculationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95370FC27D73DCD008583F1 /* BeforeCalculationState.swift */; };
 		A95370FF27D73E11008583F1 /* AfterFirstOperationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95370FE27D73E11008583F1 /* AfterFirstOperationState.swift */; };
 		A953710127D73E2C008583F1 /* AfterSecondNumberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953710027D73E2C008583F1 /* AfterSecondNumberState.swift */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		A95370F327D5BDC5008583F1 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A95370F627D7399B008583F1 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
-		A95370FA27D73C76008583F1 /* BaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseState.swift; sourceTree = "<group>"; };
+		A95370FA27D73C76008583F1 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A95370FC27D73DCD008583F1 /* BeforeCalculationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeCalculationState.swift; sourceTree = "<group>"; };
 		A95370FE27D73E11008583F1 /* AfterFirstOperationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterFirstOperationState.swift; sourceTree = "<group>"; };
 		A953710027D73E2C008583F1 /* AfterSecondNumberState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterSecondNumberState.swift; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				A95370F627D7399B008583F1 /* Calculator.swift */,
-				A95370FA27D73C76008583F1 /* BaseState.swift */,
+				A95370FA27D73C76008583F1 /* State.swift */,
 				A95370FC27D73DCD008583F1 /* BeforeCalculationState.swift */,
 				A95370FE27D73E11008583F1 /* AfterFirstOperationState.swift */,
 				A953710027D73E2C008583F1 /* AfterSecondNumberState.swift */,
@@ -276,7 +276,7 @@
 			files = (
 				A9A2AAC627BA2A5A009AAE69 /* ContentView.swift in Sources */,
 				A95370F727D7399B008583F1 /* Calculator.swift in Sources */,
-				A95370FB27D73C76008583F1 /* BaseState.swift in Sources */,
+				A95370FB27D73C76008583F1 /* State.swift in Sources */,
 				A9A2AAFB27C38B66009AAE69 /* ButtonViewModel.swift in Sources */,
 				A9A2AAE027BD0249009AAE69 /* Fonts.swift in Sources */,
 				A9A2AAF927C38B09009AAE69 /* ButtonView.swift in Sources */,

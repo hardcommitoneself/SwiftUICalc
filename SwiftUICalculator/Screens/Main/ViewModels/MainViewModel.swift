@@ -4,15 +4,8 @@ final class MainViewModel: ObservableObject {
     
     @Published private(set) var calculationText: String
     
-    @Published private var itemViewModels: [[ButtonViewModel]] = [[]]
-    
-//    private var currentResult: Decimal
-//    private var lastSecondaryOperation: OperationType
-//    private var storedNumber: Decimal
-//    private var storedOperation: OperationType
-    
-//    private var state: Staate
-    private let calculator: Calculator
+    private var calculator: Calculator
+    private var itemViewModels: [[ButtonViewModel]] = [[]]
     
     var columnCount: Int {
         4
@@ -23,13 +16,8 @@ final class MainViewModel: ObservableObject {
     }
     
     init() {
-        calculator = Calculator(BeforeCalculationState())
-//        state = .beginning
+        calculator = Calculator()
         calculationText = "0"
-//        currentResult = 0
-//        storedNumber = 0
-//        lastSecondaryOperation = .plus
-//        storedOperation = .plus
         itemViewModels = [
             [
                 ButtonViewModel(item: ItemInfo(
@@ -95,6 +83,7 @@ final class MainViewModel: ObservableObject {
     }
     
     private func setupDelegates() {
+        calculationText = calculator.calculationText
         itemViewModels.forEach { row in
             row.forEach { $0.delegate = self }
         }
