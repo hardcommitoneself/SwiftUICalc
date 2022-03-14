@@ -6,6 +6,12 @@ final class MainViewModel: ObservableObject {
     
     private var calculator: Calculator
     private var itemViewModels: [[ButtonViewModel]] = [[]]
+    private var numberFromCalculationText: Decimal? {
+        Decimal(string: calculationText.replacingOccurrences(of: ",", with: "."))
+    }
+    private var operationViewModels: [ButtonViewModel] {
+        itemViewModels.compactMap { $0.last }
+    }
     
     var columnCount: Int {
         4
@@ -90,12 +96,19 @@ final class MainViewModel: ObservableObject {
             row.forEach { $0.delegate = self }
         }
     }
+    
+    private func resetOperationButtonsColors() {
+        operationViewModels.forEach { viewModel in
+            viewModel.resetOperationButtonColor()
+        }
+    }
 }
 
 // MARK: ButtonViewModelDelegate
 extension MainViewModel: ButtonViewModelDelegate {
-    func didTapDigit(_ number: String) {
-        calculator.handleDigit(withValue: number)
+    func didTapDigit(_ digit: String) {
+        calculator.handleDigit(withValue: digit)
+        resetOperationButtonsColors()
         calculationText = calculator.calculationText
     }
     
@@ -104,23 +117,22 @@ extension MainViewModel: ButtonViewModelDelegate {
     }
     
     func didTapPrimaryOperation(_ operation: OperationType) {
-        let tempNumber = Decimal(string: calculationText
-                                    .replacingOccurrences(of: ",", with: "."))
-        calculator.handlePrimaryOperation(ofType: operation, number: tempNumber)
+        calculator.handlePrimaryOperation(ofType: operation,
+                                          number: numberFromCalculationText)
+        resetOperationButtonsColors()
         calculationText = calculator.calculationText
     }
     
     func didTapSecondaryOperation(_ operation: OperationType) {
-        let tempNumber = Decimal(string: calculationText
-                                    .replacingOccurrences(of: ",", with: "."))
-        calculator.handleSecondaryOperation(ofType: operation, number: tempNumber)
+        calculator.handleSecondaryOperation(ofType: operation,
+                                            number: numberFromCalculationText)
+        resetOperationButtonsColors()
         calculationText = calculator.calculationText
     }
     
     func didTapEqual() {
-        let tempNumber = Decimal(string: calculationText
-                                    .replacingOccurrences(of: ",", with: "."))
-        calculator.handleEqualOperation(number: tempNumber)
+        calculator.handleEqualOperation(number: numberFromCalculationText)
+        resetOperationButtonsColors()
         calculationText = calculator.calculationText
     }
 }

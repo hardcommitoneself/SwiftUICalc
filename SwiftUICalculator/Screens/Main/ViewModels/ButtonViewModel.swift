@@ -1,7 +1,7 @@
 import SwiftUI
 
 protocol ButtonViewModelDelegate: AnyObject {
-    func didTapDigit(_ number: String)
+    func didTapDigit(_ digit: String)
     func didTapUnaryOperation(_ operation: OperationType)
     func didTapPrimaryOperation(_ operation: OperationType)
     func didTapSecondaryOperation(_ operation: OperationType)
@@ -61,11 +61,11 @@ class ButtonViewModel: ObservableObject {
         case .primaryOperation(OperationType.equal.rawValue):
             delegate?.didTapEqual()
         case .primaryOperation:
-            colorizeOperationButton()
             delegate?.didTapPrimaryOperation(operationType)
-        case .secondaryOperation:
             colorizeOperationButton()
+        case .secondaryOperation:
             delegate?.didTapSecondaryOperation(operationType)
+            colorizeOperationButton()
         }
     }
     
@@ -85,13 +85,13 @@ class ButtonViewModel: ObservableObject {
         }
     }
     
+    func resetOperationButtonColor() {
+        backgroundColor = Colors.darkBlue
+        foregroundColor = Colors.white
+    }
+    
     private func colorizeOperationButton() {
         backgroundColor = Colors.lightGray
         foregroundColor = Colors.darkBlue
-    }
-    
-    private func resetOperationButtonColor() {
-        backgroundColor = Colors.darkBlue
-        foregroundColor = Colors.white
     }
 }

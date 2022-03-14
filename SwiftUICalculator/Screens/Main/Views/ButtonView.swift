@@ -13,16 +13,18 @@ struct ButtonView: View {
     }
     
     var body: some View {
-        Button(viewModel.title) {
+        Button {
             viewModel.action()
+        } label: {
+            Text(viewModel.title)
+                .frame(width: viewModel.getButtonWidth(width: columnWidth), height: columnWidth)
+                .foregroundColor(viewModel.foregroundColor)
+                .background(viewModel.backgroundColor)
+                .cornerRadius(20)
+                .font(.montserrat(size: viewModel.getFontSize()))
+                .shadow(color: Colors.shadowBlue, radius: 5, x: 5, y: 5)
+                .shadow(color: .white, radius: 5, x: -5, y: -5)
         }
-        .frame(width: viewModel.getButtonWidth(width: columnWidth), height: columnWidth)
-        .foregroundColor(viewModel.foregroundColor)
-        .background(viewModel.backgroundColor)
-        .cornerRadius(20)
-        .font(.montserrat(size: viewModel.getFontSize()))
-        .shadow(color: Colors.shadowBlue, radius: 5, x: 5, y: 5)
-        .shadow(color: .white, radius: 5, x: -5, y: -5)
     }
 }
 
