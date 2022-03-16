@@ -98,40 +98,31 @@ final class MainViewModel: ObservableObject {
             row.forEach { $0.delegate = self }
         }
     }
-    
-    private func resetOperationButtonsColors() {
-        operationViewModels.forEach { viewModel in
-            viewModel.resetOperationButtonColor()
-        }
-    }
 }
 
 // MARK: ButtonViewModelDelegate
 extension MainViewModel: ButtonViewModelDelegate {
     func didTapDigit(_ digit: String) {
         calculator.handleDigit(withValue: digit)
-        resetOperationButtonsColors()
     }
     
     func didTapUnaryOperation(_ operation: OperationType) {
-        
+        calculator.handleUnaryOperation(ofType: operation,
+                                        number: numberFromCalculationText)
     }
     
     func didTapPrimaryOperation(_ operation: OperationType) {
         calculator.handlePrimaryOperation(ofType: operation,
                                           number: numberFromCalculationText)
-        resetOperationButtonsColors()
     }
     
     func didTapSecondaryOperation(_ operation: OperationType) {
         calculator.handleSecondaryOperation(ofType: operation,
                                             number: numberFromCalculationText)
-        resetOperationButtonsColors()
     }
     
     func didTapEqual() {
         calculator.handleEqualOperation(number: numberFromCalculationText)
-        resetOperationButtonsColors()
     }
 }
 
@@ -148,6 +139,8 @@ extension MainViewModel: CalculatorDelegate {
     func appendText(_ text: String) {
         if calculationText == "0" {
             replaceText(with: text)
+        } else if calculationText == "-0" {
+            calculationText = "-" + text
         } else {
             if (text != "," || !calculationText.contains(","))
                 && calculationText.count < 9 {
@@ -159,5 +152,11 @@ extension MainViewModel: CalculatorDelegate {
     func updateCalculationText(with number: Decimal) {
         calculationText = String(describing: number)
             .replacingOccurrences(of: ".", with: ",")
+    }
+    
+    func resetUI() {
+        operationViewModels.forEach { viewModel in
+            viewModel.resetOperationButtonColor()
+        }
     }
 }

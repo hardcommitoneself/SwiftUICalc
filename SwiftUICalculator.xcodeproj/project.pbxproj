@@ -25,11 +25,11 @@
 		A919991327DE68F7003580B2 /* SwiftUICalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAC327BA2A5A009AAE69 /* SwiftUICalculatorApp.swift */; };
 		A956159D27DE769300D4F737 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A919991427DE708E003580B2 /* State.swift */; };
 		A956159E27DE769300D4F737 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A2AAF127C01182009AAE69 /* OperationType.swift */; };
-		A9A2AAC827BA2A5C009AAE69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */; };
-		A9A2AACB27BA2A5C009AAE69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AACA27BA2A5C009AAE69 /* Preview Assets.xcassets */; };
-		A9A2AAD827BCF21D009AAE69 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAD727BCF21D009AAE69 /* Montserrat-Bold.ttf */; };
-		A9A2AAE727BD1D2E009AAE69 /* Museo-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */; };
-		A9A2AAEA27BD71F6009AAE69 /* DigitalNumbers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE927BD71F6009AAE69 /* DigitalNumbers-Regular.ttf */; };
+		A983E89927E208CD00561814 /* Museo-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE627BD1D2E009AAE69 /* Museo-700.otf */; };
+		A983E89A27E208CD00561814 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAD727BCF21D009AAE69 /* Montserrat-Bold.ttf */; };
+		A983E89B27E208CD00561814 /* DigitalNumbers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAE927BD71F6009AAE69 /* DigitalNumbers-Regular.ttf */; };
+		A983E89C27E208CD00561814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AAC727BA2A5C009AAE69 /* Assets.xcassets */; };
+		A983E89D27E208CD00561814 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A2AACA27BA2A5C009AAE69 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,11 +256,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A2AACB27BA2A5C009AAE69 /* Preview Assets.xcassets in Resources */,
-				A9A2AAC827BA2A5C009AAE69 /* Assets.xcassets in Resources */,
-				A9A2AAE727BD1D2E009AAE69 /* Museo-700.otf in Resources */,
-				A9A2AAEA27BD71F6009AAE69 /* DigitalNumbers-Regular.ttf in Resources */,
-				A9A2AAD827BCF21D009AAE69 /* Montserrat-Bold.ttf in Resources */,
+				A983E89927E208CD00561814 /* Museo-700.otf in Resources */,
+				A983E89A27E208CD00561814 /* Montserrat-Bold.ttf in Resources */,
+				A983E89B27E208CD00561814 /* DigitalNumbers-Regular.ttf in Resources */,
+				A983E89C27E208CD00561814 /* Assets.xcassets in Resources */,
+				A983E89D27E208CD00561814 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

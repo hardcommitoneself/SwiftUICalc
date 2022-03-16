@@ -16,7 +16,8 @@ protocol State {
 }
 
 extension State {
-    func handleDigit(calculator: Calculator, withValue digit: String) -> State? { return nil }
+    func handleDigit(calculator: Calculator,
+                     withValue digit: String) -> State? { return nil }
     func handleUnaryOperation(calculator: Calculator,
                               ofType type: OperationType,
                               number: Decimal? = nil) -> State? { return nil }

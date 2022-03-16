@@ -4,6 +4,7 @@ protocol CalculatorDelegate: AnyObject {
     func replaceText(with text: String)
     func appendText(_ text: String)
     func updateCalculationText(with number: Decimal)
+    func resetUI()
 }
 
 class Calculator {
@@ -27,10 +28,18 @@ class Calculator {
     
     // MARK: Handling input methods
     func handleDigit(withValue digit: String) {
-        transitionTo(state: state.handleDigit(calculator: self, withValue: digit))
+        transitionTo(state: state.handleDigit(calculator: self,
+                                              withValue: digit))
+        delegate?.resetUI()
     }
     
     func handleUnaryOperation(ofType type: OperationType, number: Decimal? = nil) {
+        if type == OperationType.allClear {
+            resetCalculator()
+            transitionTo(state: BeforeCalculationState())
+            return
+        }
+        
         transitionTo(state: state.handleUnaryOperation(calculator: self,
                                                        ofType: type,
                                                        number: number))
@@ -40,16 +49,19 @@ class Calculator {
         transitionTo(state: state.handlePrimaryOperation(calculator: self,
                                                          ofType: type,
                                                          number: number))
+        delegate?.resetUI()
     }
     
     func handleSecondaryOperation(ofType type: OperationType, number: Decimal? = nil) {
         transitionTo(state: state.handleSecondaryOperation(calculator: self,
                                                            ofType: type,
                                                            number: number))
+        delegate?.resetUI()
     }
     
     func handleEqualOperation(number: Decimal? = nil) {
         transitionTo(state: state.handleEqualOperation(calculator: self, number: number))
+        delegate?.resetUI()
     }
     
     // MARK: Public service methods
@@ -72,6 +84,10 @@ class Calculator {
     
     func updateCalculationText(with number: Decimal? = nil) {
         delegate?.updateCalculationText(with: number ?? currentResult)
+    }
+    
+    func calculatePercent(from number: Decimal) -> Decimal {
+        currentResult * number / 100
     }
     
     /// Calculate stored operation and then last stored secondary operation.
@@ -129,5 +145,12 @@ class Calculator {
                                   secondNumber: Decimal? = nil) -> Decimal {
         return type.performOperation(num1: firstNumber ?? currentResult,
                                      num2: secondNumber ?? storedNumber)
+    }
+    
+    private func resetCalculator() {
+        currentResult = 0
+        storedNumber = 0
+        delegate?.resetUI()
+        delegate?.updateCalculationText(with: 0)
     }
 }

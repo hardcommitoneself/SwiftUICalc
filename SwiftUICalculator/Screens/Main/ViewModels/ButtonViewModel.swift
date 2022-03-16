@@ -33,6 +33,12 @@ class ButtonViewModel: ObservableObject {
             return OperationType.plus
         case OperationType.equal.rawValue:
             return OperationType.equal
+        case OperationType.allClear.rawValue:
+            return OperationType.allClear
+        case OperationType.toggleSign.rawValue:
+            return OperationType.toggleSign
+        case OperationType.percent.rawValue:
+            return OperationType.percent
         default:
             return OperationType.equal
         }
