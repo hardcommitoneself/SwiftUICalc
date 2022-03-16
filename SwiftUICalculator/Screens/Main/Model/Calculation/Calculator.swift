@@ -1,8 +1,14 @@
 import Foundation
 
+protocol CalculatorDelegate: AnyObject {
+    func replaceText(with text: String)
+    func appendText(_ text: String)
+    func updateCalculationText(with number: Decimal)
+}
+
 class Calculator {
     
-    private(set) var calculationText: String
+    weak var delegate: CalculatorDelegate?
     
     private var currentResult: Decimal
     private var storedNumber: Decimal
@@ -13,7 +19,6 @@ class Calculator {
     
     init() {
         state = BeforeCalculationState()
-        calculationText = "0"
         currentResult = 0
         storedNumber = 0
         lastSecondaryOperation = .plus
@@ -58,26 +63,15 @@ class Calculator {
     }
     
     func replaceText(with text: String) {
-        if text == "," {
-            calculationText = "0" + text
-        } else {
-            calculationText = text
-        }
+        delegate?.replaceText(with: text)
     }
     
     func appendText(_ text: String) {
-        if calculationText == "0" {
-            replaceText(with: text)
-        } else {
-            if (text != "," || !calculationText.contains(","))
-                && calculationText.count < 9 {
-                calculationText += text
-            }
-        }
+        delegate?.appendText(text)
     }
     
     func updateCalculationText(with number: Decimal? = nil) {
-        calculationText = String(describing: number ?? currentResult)
+        delegate?.updateCalculationText(with: number ?? currentResult)
     }
     
     /// Calculate stored operation and then last stored secondary operation.

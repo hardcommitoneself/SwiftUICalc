@@ -10,12 +10,16 @@ protocol ButtonViewModelDelegate: AnyObject {
 
 class ButtonViewModel: ObservableObject {
     
-    weak var delegate: ButtonViewModelDelegate?
-    
     @Published var backgroundColor: Color
     @Published var foregroundColor: Color
     
+    weak var delegate: ButtonViewModelDelegate?
+    
     private var item: ItemInfo
+    
+    var title: String {
+        item.keyType.title
+    }
     
     private var operationType: OperationType {
         switch title {
@@ -32,10 +36,6 @@ class ButtonViewModel: ObservableObject {
         default:
             return OperationType.equal
         }
-    }
-    
-    var title: String {
-        item.keyType.title
     }
     
     init(item: ItemInfo) {
