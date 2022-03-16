@@ -10,7 +10,16 @@ class AfterPrimaryOperationState: State {
     func handleUnaryOperation(calculator: Calculator,
                               ofType type: OperationType,
                               number: Decimal? = nil) -> State? {
-        return nil
+        switch type {
+        case .toggleSign:
+            calculator.storeCalculationInfo(numberToStore: number)
+            calculator.replaceText(with: "-0")
+            return AfterPrimaryBlockNumberState()
+        case .percent:
+            return nil
+        default:
+            return nil
+        }
     }
     
     func handlePrimaryOperation(calculator: Calculator,

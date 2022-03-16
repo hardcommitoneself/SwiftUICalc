@@ -3,6 +3,7 @@ import Foundation
 protocol CalculatorDelegate: AnyObject {
     func replaceText(with text: String)
     func appendText(_ text: String)
+    func toggleTextSign()
     func updateCalculationText(with number: Decimal)
     func resetUI()
 }
@@ -80,6 +81,10 @@ class Calculator {
     
     func appendText(_ text: String) {
         delegate?.appendText(text)
+    }
+    
+    func toggleTextSign() {
+        delegate?.toggleTextSign()
     }
     
     func updateCalculationText(with number: Decimal? = nil) {

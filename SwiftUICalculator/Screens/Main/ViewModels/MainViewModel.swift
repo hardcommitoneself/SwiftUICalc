@@ -140,12 +140,21 @@ extension MainViewModel: CalculatorDelegate {
         if calculationText == "0" {
             replaceText(with: text)
         } else if calculationText == "-0" {
-            calculationText = "-" + text
+            replaceText(with: text)
+            calculationText.insert("-", at: calculationText.startIndex)
         } else {
             if (text != "," || !calculationText.contains(","))
                 && calculationText.count < 9 {
                 calculationText += text
             }
+        }
+    }
+    
+    func toggleTextSign() {
+        if calculationText.first == "-" {
+            calculationText.removeFirst()
+        } else {
+            calculationText.insert("-", at: calculationText.startIndex)
         }
     }
     
