@@ -7,19 +7,21 @@ class AfterPrimaryOperationState: State {
         return AfterPrimaryBlockNumberState()
     }
     
-    func handleUnaryOperation(calculator: Calculator,
-                              ofType type: OperationType,
-                              number: Decimal? = nil) -> State? {
-        switch type {
-        case .toggleSign:
-            calculator.storeCalculationInfo(numberToStore: number)
-            calculator.replaceText(with: "-0")
-            return AfterPrimaryBlockNumberState()
-        case .percent:
-            return nil
-        default:
-            return nil
-        }
+    func handleToggleSign(calculator: Calculator,
+                          number: Decimal?) -> State? {
+        calculator.storeCalculationInfo(numberToStore: number)
+        calculator.replaceText(with: "-0")
+        return AfterPrimaryBlockNumberState()
+    }
+    
+    func handlePercent(calculator: Calculator,
+                       number: Decimal?) -> State? {
+        guard let number = number else { return nil }
+        let percent = number / 100
+        
+        calculator.storeCalculationInfo(numberToStore: percent)
+        calculator.replaceText(with: percent)
+        return nil
     }
     
     func handlePrimaryOperation(calculator: Calculator,
@@ -37,7 +39,7 @@ class AfterPrimaryOperationState: State {
                                         numberToStore: result,
                                         operationToStore: type,
                                         secondaryOperation: type)
-        calculator.updateCalculationText()
+        calculator.replaceText()
         
         return AfterFirstOperationState()
     }
@@ -45,7 +47,7 @@ class AfterPrimaryOperationState: State {
     func handleEqualOperation(calculator: Calculator, number: Decimal? = nil) -> State? {
         let result = calculator.calculateMultipleOperations(secondNumber: number)
         calculator.storeCalculationInfo(result: result)
-        calculator.updateCalculationText()
+        calculator.replaceText()
         
         return AfterFirstOperationState()
     }

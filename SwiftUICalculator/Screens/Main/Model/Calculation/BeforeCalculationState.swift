@@ -7,20 +7,17 @@ class BeforeCalculationState: State {
         return nil
     }
     
-    func handleUnaryOperation(calculator: Calculator,
-                              ofType type: OperationType,
-                              number: Decimal? = nil) -> State? {
+    func handleToggleSign(calculator: Calculator,
+                          number: Decimal?) -> State? {
+        calculator.toggleTextSign()
+        return nil
+    }
+    
+    func handlePercent(calculator: Calculator,
+                       number: Decimal?) -> State? {
         guard let number = number else { return nil }
-
-        switch type {
-        case .toggleSign:
-            calculator.toggleTextSign()
-            return nil
-        case .percent:
-            return nil
-        default:
-            return nil
-        }
+        calculator.replaceText(with: number / 100)
+        return nil
     }
     
     func handlePrimaryOperation(calculator: Calculator,

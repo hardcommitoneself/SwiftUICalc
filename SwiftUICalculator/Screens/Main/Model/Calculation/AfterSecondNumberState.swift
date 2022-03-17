@@ -7,18 +7,23 @@ class AfterSecondNumberState: State {
         return nil
     }
     
-    func handleUnaryOperation(calculator: Calculator,
-                              ofType type: OperationType,
-                              number: Decimal? = nil) -> State? {
-        switch type {
-        case .toggleSign:
-            calculator.toggleTextSign()
-            return nil
-        case .percent:
-            return nil
-        default:
-            return nil
-        }
+    func handleToggleSign(calculator: Calculator,
+                          number: Decimal?) -> State? {
+        calculator.toggleTextSign()
+        return nil
+    }
+    
+    func handlePercent(calculator: Calculator,
+                       number: Decimal?) -> State? {
+        guard let number = number else { return nil }
+        let percent = calculator.isStoredOperationPrimary()
+            ? number / 100
+            : calculator.calculatePercent(from: number)
+        
+        calculator.storeCalculationInfo(numberToStore: percent)
+        calculator.replaceText(with: percent)
+        
+        return AfterFirstOperationState()
     }
     
     func handlePrimaryOperation(calculator: Calculator,
@@ -29,7 +34,7 @@ class AfterSecondNumberState: State {
             calculator.storeCalculationInfo(result: result,
                                             numberToStore: result,
                                             operationToStore: type)
-            calculator.updateCalculationText()
+            calculator.replaceText()
             return AfterFirstOperationState()
         }
         
@@ -47,7 +52,7 @@ class AfterSecondNumberState: State {
                                         numberToStore: result,
                                         operationToStore: type,
                                         secondaryOperation: type)
-        calculator.updateCalculationText()
+        calculator.replaceText()
         
         return AfterFirstOperationState()
     }
@@ -56,7 +61,7 @@ class AfterSecondNumberState: State {
         let result = calculator.calculateStoredOperation(secondNumber: number)
         calculator.storeCalculationInfo(result: result,
                                         numberToStore: number)
-        calculator.updateCalculationText()
+        calculator.replaceText()
         
         return AfterFirstOperationState()
     }

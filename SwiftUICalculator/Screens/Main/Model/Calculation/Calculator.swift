@@ -1,11 +1,11 @@
 import Foundation
 
 protocol CalculatorDelegate: AnyObject {
-    func replaceText(with text: String)
-    func appendText(_ text: String)
-    func toggleTextSign()
-    func updateCalculationText(with number: Decimal)
-    func resetUI()
+    func calculator(didAppendTextWithValue text: String)
+    func calculator(didReplaceTextWith text: String)
+    func calculator(didReplaceTextWith number: Decimal)
+    func calculatorDidToggleTextSign()
+    func calculatorDidResetUI()
 }
 
 class Calculator {
@@ -27,42 +27,63 @@ class Calculator {
         storedOperation = .plus
     }
     
-    // MARK: Handling input methods
+    // MARK: Input handling methods
     func handleDigit(withValue digit: String) {
         transitionTo(state: state.handleDigit(calculator: self,
                                               withValue: digit))
-        delegate?.resetUI()
+        delegate?.calculatorDidResetUI()
     }
     
-    func handleUnaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        if type == OperationType.allClear {
+    func handleUnaryOperation(ofType type: OperationType,
+                              number: Decimal? = nil) {
+        switch type {
+        case .allClear:
             resetCalculator()
             transitionTo(state: BeforeCalculationState())
-            return
-        }
-        
-        transitionTo(state: state.handleUnaryOperation(calculator: self,
-                                                       ofType: type,
+        case .toggleSign:
+            transitionTo(state: state.handleToggleSign(calculator: self,
                                                        number: number))
+        case .percent:
+            transitionTo(state: state.handlePercent(calculator: self,
+                                                    number: number))
+        default: ()
+        }
     }
     
     func handlePrimaryOperation(ofType type: OperationType, number: Decimal? = nil) {
         transitionTo(state: state.handlePrimaryOperation(calculator: self,
                                                          ofType: type,
                                                          number: number))
-        delegate?.resetUI()
+        delegate?.calculatorDidResetUI()
     }
     
     func handleSecondaryOperation(ofType type: OperationType, number: Decimal? = nil) {
         transitionTo(state: state.handleSecondaryOperation(calculator: self,
                                                            ofType: type,
                                                            number: number))
-        delegate?.resetUI()
+        delegate?.calculatorDidResetUI()
     }
     
     func handleEqualOperation(number: Decimal? = nil) {
         transitionTo(state: state.handleEqualOperation(calculator: self, number: number))
-        delegate?.resetUI()
+        delegate?.calculatorDidResetUI()
+    }
+    
+    // MARK: Delegate wrapper methods
+    func replaceText(with text: String) {
+        delegate?.calculator(didReplaceTextWith: text)
+    }
+    
+    func replaceText(with number: Decimal? = nil) {
+        delegate?.calculator(didReplaceTextWith: number ?? currentResult)
+    }
+    
+    func appendText(_ text: String) {
+        delegate?.calculator(didAppendTextWithValue: text)
+    }
+    
+    func toggleTextSign() {
+        delegate?.calculatorDidToggleTextSign()
     }
     
     // MARK: Public service methods
@@ -73,22 +94,6 @@ class Calculator {
     
     func isStoredOperationPrimary() -> Bool {
         storedOperation == .multiply || storedOperation == .division
-    }
-    
-    func replaceText(with text: String) {
-        delegate?.replaceText(with: text)
-    }
-    
-    func appendText(_ text: String) {
-        delegate?.appendText(text)
-    }
-    
-    func toggleTextSign() {
-        delegate?.toggleTextSign()
-    }
-    
-    func updateCalculationText(with number: Decimal? = nil) {
-        delegate?.updateCalculationText(with: number ?? currentResult)
     }
     
     func calculatePercent(from number: Decimal) -> Decimal {
@@ -123,25 +128,26 @@ class Calculator {
     
     /// Function to store new entered numbers and operations.
     /// If any parameter is nil, it will not be stored.
-    func storeCalculationInfo(result: Decimal? = nil,
-                              numberToStore storedNumber: Decimal? = nil,
-                              operationToStore storedOperation: OperationType? = nil,
-                              secondaryOperation: OperationType? = nil) {
-        if let result = result {
-            currentResult = result
-        }
-        
-        if let storedNumber = storedNumber {
-            self.storedNumber = storedNumber
-        }
-        
-        if let storedOperation = storedOperation {
-            self.storedOperation = storedOperation
-        }
-        
-        if let secondaryOperation = secondaryOperation {
-            lastSecondaryOperation = secondaryOperation
-        }
+    func storeCalculationInfo(
+        result: Decimal? = nil,
+        numberToStore storedNumber: Decimal? = nil,
+        operationToStore storedOperation: OperationType? = nil,
+        secondaryOperation: OperationType? = nil) {
+            if let result = result {
+                currentResult = result
+            }
+            
+            if let storedNumber = storedNumber {
+                self.storedNumber = storedNumber
+            }
+            
+            if let storedOperation = storedOperation {
+                self.storedOperation = storedOperation
+            }
+            
+            if let secondaryOperation = secondaryOperation {
+                lastSecondaryOperation = secondaryOperation
+            }
     }
     
     // MARK: Private methods
@@ -155,7 +161,7 @@ class Calculator {
     private func resetCalculator() {
         currentResult = 0
         storedNumber = 0
-        delegate?.resetUI()
-        delegate?.updateCalculationText(with: 0)
+        delegate?.calculatorDidResetUI()
+        delegate?.calculator(didReplaceTextWith: 0)
     }
 }

@@ -7,18 +7,17 @@ class AfterPrimaryBlockNumberState: State {
         return nil
     }
     
-    func handleUnaryOperation(calculator: Calculator,
-                              ofType type: OperationType,
-                              number: Decimal? = nil) -> State? {
-        switch type {
-        case .toggleSign:
-            calculator.toggleTextSign()
-            return nil
-        case .percent:
-            return nil
-        default:
-            return nil
-        }
+    func handleToggleSign(calculator: Calculator,
+                          number: Decimal?) -> State? {
+        calculator.toggleTextSign()
+        return nil
+    }
+    
+    func handlePercent(calculator: Calculator,
+                       number: Decimal?) -> State? {
+        guard let number = number else { return nil }
+        calculator.replaceText(with: number / 100)
+        return nil
     }
     
     func handlePrimaryOperation(calculator: Calculator,
@@ -28,7 +27,7 @@ class AfterPrimaryBlockNumberState: State {
                                                          withStoredNumber: true)
         calculator.storeCalculationInfo(numberToStore: result,
                                         operationToStore: type)
-        calculator.updateCalculationText(with: result)
+        calculator.replaceText(with: result)
         
         return AfterPrimaryOperationState()
     }
@@ -41,7 +40,7 @@ class AfterPrimaryBlockNumberState: State {
                                         numberToStore: result,
                                         operationToStore: type,
                                         secondaryOperation: type)
-        calculator.updateCalculationText()
+        calculator.replaceText()
         
         return AfterFirstOperationState()
     }
@@ -50,7 +49,7 @@ class AfterPrimaryBlockNumberState: State {
         let result = calculator.calculateMultipleOperations(secondNumber: number)
         calculator.storeCalculationInfo(result: result,
                                         numberToStore: number)
-        calculator.updateCalculationText()
+        calculator.replaceText()
         
         return AfterFirstOperationState()
     }

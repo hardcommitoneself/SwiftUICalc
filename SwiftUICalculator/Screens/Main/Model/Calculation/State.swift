@@ -2,9 +2,10 @@ import Foundation
 
 protocol State {
     func handleDigit(calculator: Calculator, withValue digit: String) -> State?
-    func handleUnaryOperation(calculator: Calculator,
-                              ofType type: OperationType,
-                              number: Decimal?) -> State?
+    func handleToggleSign(calculator: Calculator,
+                          number: Decimal?) -> State?
+    func handlePercent(calculator: Calculator,
+                       number: Decimal?) -> State?
     func handlePrimaryOperation(calculator: Calculator,
                                 ofType type: OperationType,
                                 number: Decimal?) -> State?
@@ -18,9 +19,10 @@ protocol State {
 extension State {
     func handleDigit(calculator: Calculator,
                      withValue digit: String) -> State? { return nil }
-    func handleUnaryOperation(calculator: Calculator,
-                              ofType type: OperationType,
-                              number: Decimal? = nil) -> State? { return nil }
+    func handleToggleSign(calculator: Calculator,
+                          number: Decimal?) -> State? { return nil }
+    func handlePercent(calculator: Calculator,
+                       number: Decimal?) -> State? { return nil }
     func handlePrimaryOperation(calculator: Calculator,
                                 ofType type: OperationType,
                                 number: Decimal? = nil) -> State? { return nil }

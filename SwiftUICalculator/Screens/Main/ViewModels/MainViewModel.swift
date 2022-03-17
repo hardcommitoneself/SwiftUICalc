@@ -128,7 +128,7 @@ extension MainViewModel: ButtonViewModelDelegate {
 
 // MARK: CalculatorDelegate
 extension MainViewModel: CalculatorDelegate {
-    func replaceText(with text: String) {
+    func calculator(didReplaceTextWith text: String) {
         if text == "," {
             calculationText = "0" + text
         } else {
@@ -136,11 +136,11 @@ extension MainViewModel: CalculatorDelegate {
         }
     }
     
-    func appendText(_ text: String) {
+    func calculator(didAppendTextWithValue text: String) {
         if calculationText == "0" {
-            replaceText(with: text)
+            calculator(didReplaceTextWith: text)
         } else if calculationText == "-0" {
-            replaceText(with: text)
+            calculator(didReplaceTextWith: text)
             calculationText.insert("-", at: calculationText.startIndex)
         } else {
             if (text != "," || !calculationText.contains(","))
@@ -150,7 +150,7 @@ extension MainViewModel: CalculatorDelegate {
         }
     }
     
-    func toggleTextSign() {
+    func calculatorDidToggleTextSign() {
         if calculationText.first == "-" {
             calculationText.removeFirst()
         } else {
@@ -158,12 +158,12 @@ extension MainViewModel: CalculatorDelegate {
         }
     }
     
-    func updateCalculationText(with number: Decimal) {
+    func calculator(didReplaceTextWith number: Decimal) {
         calculationText = String(describing: number)
             .replacingOccurrences(of: ".", with: ",")
     }
     
-    func resetUI() {
+    func calculatorDidResetUI() {
         operationViewModels.forEach { viewModel in
             viewModel.resetOperationButtonColor()
         }
