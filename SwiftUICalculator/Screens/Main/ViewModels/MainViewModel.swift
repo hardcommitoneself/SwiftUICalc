@@ -29,16 +29,16 @@ final class MainViewModel: ObservableObject {
         itemViewModels = [
             [
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .unaryOperation(OperationType.allClear.rawValue),
+                    keyType: .unaryOperation(OperationType.allClear),
                     size: 1)),
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .unaryOperation(OperationType.toggleSign.rawValue),
+                    keyType: .unaryOperation(OperationType.toggleSign),
                     size: 1)),
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .unaryOperation(OperationType.percent.rawValue),
+                    keyType: .unaryOperation(OperationType.percent),
                     size: 1)),
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .primaryOperation(OperationType.division.rawValue),
+                    keyType: .primaryOperation(OperationType.division),
                     size: 1))
             ],
             [
@@ -46,7 +46,7 @@ final class MainViewModel: ObservableObject {
                 ButtonViewModel(item: ItemInfo(keyType: .number("8"), size: 1)),
                 ButtonViewModel(item: ItemInfo(keyType: .number("9"), size: 1)),
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .primaryOperation(OperationType.multiply.rawValue),
+                    keyType: .primaryOperation(OperationType.multiply),
                     size: 1))
             ],
             [
@@ -54,7 +54,7 @@ final class MainViewModel: ObservableObject {
                 ButtonViewModel(item: ItemInfo(keyType: .number("5"), size: 1)),
                 ButtonViewModel(item: ItemInfo(keyType: .number("6"), size: 1)),
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .secondaryOperation(OperationType.minus.rawValue),
+                    keyType: .secondaryOperation(OperationType.minus),
                     size: 1))
             ],
             [
@@ -62,14 +62,14 @@ final class MainViewModel: ObservableObject {
                 ButtonViewModel(item: ItemInfo(keyType: .number("2"), size: 1)),
                 ButtonViewModel(item: ItemInfo(keyType: .number("3"), size: 1)),
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .secondaryOperation(OperationType.plus.rawValue),
+                    keyType: .secondaryOperation(OperationType.plus),
                     size: 1))
             ],
             [
                 ButtonViewModel(item: ItemInfo(keyType: .number("0"), size: 2)),
                 ButtonViewModel(item: ItemInfo(keyType: .number(","), size: 1)),
                 ButtonViewModel(item: ItemInfo(
-                    keyType: .primaryOperation(OperationType.equal.rawValue),
+                    keyType: .primaryOperation(OperationType.equal),
                     size: 1))
             ]
         ]

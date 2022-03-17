@@ -12,40 +12,19 @@ class ButtonViewModel: ObservableObject {
     
     @Published var backgroundColor: Color
     @Published var foregroundColor: Color
+    @Published var title: String
     
     weak var delegate: ButtonViewModelDelegate?
     
     private var item: ItemInfo
     
-    var title: String {
-        item.keyType.title
-    }
-    
     private var operationType: OperationType {
-        switch title {
-        case OperationType.division.rawValue:
-            return OperationType.division
-        case OperationType.multiply.rawValue:
-            return OperationType.multiply
-        case OperationType.minus.rawValue:
-            return OperationType.minus
-        case OperationType.plus.rawValue:
-            return OperationType.plus
-        case OperationType.equal.rawValue:
-            return OperationType.equal
-        case OperationType.allClear.rawValue:
-            return OperationType.allClear
-        case OperationType.toggleSign.rawValue:
-            return OperationType.toggleSign
-        case OperationType.percent.rawValue:
-            return OperationType.percent
-        default:
-            return OperationType.equal
-        }
+        item.keyType.operationType ?? OperationType.equal
     }
     
     init(item: ItemInfo) {
         self.item = item
+        title = item.keyType.title
         switch item.keyType {
         case .primaryOperation,
              .secondaryOperation:
@@ -64,7 +43,7 @@ class ButtonViewModel: ObservableObject {
             delegate?.didTapDigit(item.keyType.title)
         case .unaryOperation:
             delegate?.didTapUnaryOperation(operationType)
-        case .primaryOperation(OperationType.equal.rawValue):
+        case .primaryOperation(OperationType.equal):
             delegate?.didTapEqual()
         case .primaryOperation:
             delegate?.didTapPrimaryOperation(operationType)
