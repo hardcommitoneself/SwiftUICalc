@@ -28,59 +28,18 @@ final class MainViewModel: ObservableObject {
     }
     
     // MARK: Initialization
-    init() {
+    init(format: CalculatorFormat = .portrait) {
         calculator = Calculator()
         calculationString = CalculationString("0")
         calculationText = "0"
-        itemViewModels = [
-            [
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .unaryOperation(OperationType.allClear),
-                    size: 1)),
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .unaryOperation(OperationType.toggleSign),
-                    size: 1)),
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .unaryOperation(OperationType.percent),
-                    size: 1)),
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .primaryOperation(OperationType.division),
-                    size: 1))
-            ],
-            [
-                ButtonViewModel(item: ItemInfo(keyType: .number("7"), size: 1)),
-                ButtonViewModel(item: ItemInfo(keyType: .number("8"), size: 1)),
-                ButtonViewModel(item: ItemInfo(keyType: .number("9"), size: 1)),
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .primaryOperation(OperationType.multiply),
-                    size: 1))
-            ],
-            [
-                ButtonViewModel(item: ItemInfo(keyType: .number("4"), size: 1)),
-                ButtonViewModel(item: ItemInfo(keyType: .number("5"), size: 1)),
-                ButtonViewModel(item: ItemInfo(keyType: .number("6"), size: 1)),
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .secondaryOperation(OperationType.minus),
-                    size: 1))
-            ],
-            [
-                ButtonViewModel(item: ItemInfo(keyType: .number("1"), size: 1)),
-                ButtonViewModel(item: ItemInfo(keyType: .number("2"), size: 1)),
-                ButtonViewModel(item: ItemInfo(keyType: .number("3"), size: 1)),
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .secondaryOperation(OperationType.plus),
-                    size: 1))
-            ],
-            [
-                ButtonViewModel(item: ItemInfo(keyType: .number("0"), size: 2)),
-                ButtonViewModel(item: ItemInfo(keyType: .number(","), size: 1)),
-                ButtonViewModel(item: ItemInfo(
-                    keyType: .primaryOperation(OperationType.equal),
-                    size: 1))
-            ]
-        ]
-        
-        setupDelegates()
+        itemViewModels = format.items.map { row in
+            row.map { item in
+                let viewModel = ButtonViewModel(item: item)
+                viewModel.delegate = self
+                return viewModel
+            }
+        }
+        calculator.delegate = self
     }
     
     // MARK: Public methods
@@ -95,14 +54,6 @@ final class MainViewModel: ObservableObject {
     func getColumnWidth(_ containerWidth: CGFloat) -> CGFloat {
         let padWidth = containerWidth - CGFloat(columnCount - 1) * 16
         return padWidth / CGFloat(columnCount)
-    }
-    
-    // MARK: Private methods
-    private func setupDelegates() {
-        calculator.delegate = self
-        itemViewModels.forEach { row in
-            row.forEach { $0.delegate = self }
-        }
     }
 }
 
