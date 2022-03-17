@@ -7,6 +7,7 @@ final class MainViewModel: ObservableObject {
     
     // MARK: Private fields
     private var calculator: Calculator
+    private var calculationString: CalculationString
     private var itemViewModels: [[ButtonViewModel]] = [[]]
     
     // MARK: Properties
@@ -29,6 +30,7 @@ final class MainViewModel: ObservableObject {
     // MARK: Initialization
     init() {
         calculator = Calculator()
+        calculationString = CalculationString("0")
         calculationText = "0"
         itemViewModels = [
             [
@@ -132,39 +134,20 @@ extension MainViewModel: ButtonViewModelDelegate {
 
 // MARK: CalculatorDelegate
 extension MainViewModel: CalculatorDelegate {
-    func calculator(didReplaceTextWith text: String) {
-        if text == "," {
-            calculationText = "0" + text
-        } else {
-            calculationText = text
-        }
-    }
-    
     func calculator(didAppendTextWithValue text: String) {
-        if calculationText == "0" {
-            calculator(didReplaceTextWith: text)
-        } else if calculationText == "-0" {
-            calculator(didReplaceTextWith: text)
-            calculationText.insert("-", at: calculationText.startIndex)
-        } else {
-            if (text != "," || !calculationText.contains(","))
-                && calculationText.count < 9 {
-                calculationText += text
-            }
-        }
+        calculationText = calculationString.validatedAppend(text: text)
     }
     
-    func calculatorDidToggleTextSign() {
-        if calculationText.first == "-" {
-            calculationText.removeFirst()
-        } else {
-            calculationText.insert("-", at: calculationText.startIndex)
-        }
+    func calculator(didReplaceTextWith text: String) {
+        calculationText = calculationString.validatedReplace(with: text)
     }
     
     func calculator(didReplaceTextWith number: Decimal) {
-        calculationText = String(describing: number)
-            .replacingOccurrences(of: ".", with: ",")
+        calculationText = calculationString.validatedReplace(with: number)
+    }
+    
+    func calculatorDidToggleTextSign() {
+        calculationText = calculationString.toggleTextSign()
     }
     
     func calculatorDidResetUI() {
