@@ -1,5 +1,17 @@
 import SwiftUI
 
+private extension Dimensions {
+    static let calculatorPaddings = EdgeInsets(
+        top: Dimensions.mediumPadding,
+        leading: Dimensions.mediumPadding,
+        bottom: Dimensions.largePadding,
+        trailing: Dimensions.mediumPadding)
+    
+    static let backgroundTextOpacity: CGFloat = 0.08
+    static let calculationFontSize: CGFloat = 40
+    static let calculationFrameHeight: CGFloat = 100
+}
+
 struct MainView: View {
     
     @ObservedObject private var viewModel: MainViewModel = MainViewModel()
@@ -8,8 +20,8 @@ struct MainView: View {
         ZStack {
             Colors.lightGray.ignoresSafeArea()
             VStack(alignment: .leading,
-                   spacing: 25) {
-                Text("Calculator")
+                   spacing: Dimensions.mediumSpacing) {
+                Text(Strings.calculatorTitle)
                     .font(.museo())
                 ZStack {
                     LinearGradient(
@@ -20,26 +32,28 @@ struct MainView: View {
                         startPoint: .leading,
                         endPoint: .trailing
                     )
-                        .cornerRadius(10)
+                    .cornerRadius(Dimensions.smallCornerRadius)
                     
                     ZStack(alignment: .leading) {
-                        Text("8888888888")
-                            .opacity(0.08)
+                        Text(Strings.calculationBackgroundText)
+                            .opacity(Dimensions.backgroundTextOpacity)
                         Text(viewModel.calculationText)
                     }
-                    .font(.digital(size: 40))
+                    .font(.digital(size: Dimensions.calculationFontSize))
                 }
-                .frame(height: 100)
+                .frame(height: Dimensions.calculationFrameHeight)
                 
                 GeometryReader { geometryReader in
                     let columnWidth = viewModel.getColumnWidth(geometryReader.size.width)
                     
-                    VStack(spacing: 16) {
-                        ForEach(0..<viewModel.rowsCount) { row in
-                            HStack(spacing: 16) {
-                                ForEach(0..<viewModel.getItemsCount(atRow: row)) { column in
+                    VStack(spacing: Dimensions.defaultSpacing) {
+                        ForEach(0..<viewModel.rowsCount, id:\.self) { row in
+                            HStack(spacing: Dimensions.defaultSpacing) {
+                                ForEach(0..<viewModel.getItemsCount(atRow: row),
+                                        id:\.self) { column in
                                     let itemViewModel = viewModel
-                                        .getItemViewModel(atRow: row, column: column)
+                                        .getItemViewModel(atRow: row,
+                                                          column: column)
                                     
                                     ButtonView(viewModel: itemViewModel,
                                                columnWidth: columnWidth)
@@ -48,13 +62,7 @@ struct MainView: View {
                         }
                     }
                 }
-            }
-            .padding(EdgeInsets(
-                top: 25,
-                leading: 24,
-                bottom: 64,
-                trailing: 24)
-            )
+            }.padding(Dimensions.calculatorPaddings)
         }
     }
 }

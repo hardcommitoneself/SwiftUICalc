@@ -1,5 +1,10 @@
 import SwiftUI
 
+private extension Dimensions {
+    static let shadowOffset: CGFloat = 5
+    static let shadowBlur: CGFloat = 5
+}
+
 struct ButtonView: View {
     
     private let columnWidth: CGFloat
@@ -20,10 +25,16 @@ struct ButtonView: View {
                 .frame(width: viewModel.getButtonWidth(width: columnWidth), height: columnWidth)
                 .foregroundColor(viewModel.foregroundColor)
                 .background(viewModel.backgroundColor)
-                .cornerRadius(20)
+                .cornerRadius(Dimensions.mediumCornerRadius)
                 .font(.montserrat(size: viewModel.getFontSize()))
-                .shadow(color: Colors.shadowBlue, radius: 5, x: 5, y: 5)
-                .shadow(color: .white, radius: 5, x: -5, y: -5)
+                .shadow(color: Colors.shadowBlue,
+                        radius: Dimensions.shadowBlur,
+                        x: Dimensions.shadowOffset,
+                        y: Dimensions.shadowOffset)
+                .shadow(color: .white,
+                        radius: Dimensions.shadowBlur,
+                        x: -Dimensions.shadowOffset,
+                        y: -Dimensions.shadowOffset)
         }
     }
 }

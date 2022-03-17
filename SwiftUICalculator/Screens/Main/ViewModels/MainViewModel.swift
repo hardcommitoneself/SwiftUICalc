@@ -30,8 +30,8 @@ final class MainViewModel: ObservableObject {
     // MARK: Initialization
     init(format: CalculatorFormat = .portrait) {
         calculator = Calculator()
-        calculationString = CalculationString("0")
-        calculationText = "0"
+        calculationString = CalculationString(Strings.calculationPlaceholder)
+        calculationText = Strings.calculationPlaceholder
         itemViewModels = format.items.map { row in
             row.map { item in
                 let viewModel = ButtonViewModel(item: item)
@@ -52,7 +52,9 @@ final class MainViewModel: ObservableObject {
     }
     
     func getColumnWidth(_ containerWidth: CGFloat) -> CGFloat {
-        let padWidth = containerWidth - CGFloat(columnCount - 1) * 16
+        let padWidth = containerWidth
+                        - CGFloat(columnCount - 1)
+                        * Dimensions.defaultSpacing
         return padWidth / CGFloat(columnCount)
     }
 }

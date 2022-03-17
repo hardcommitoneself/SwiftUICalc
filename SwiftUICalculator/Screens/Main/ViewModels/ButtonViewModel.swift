@@ -1,5 +1,10 @@
 import SwiftUI
 
+private extension Dimensions {
+    static let defaultFontSize: CGFloat = 29
+    static let largeFontSize: CGFloat = 44
+}
+
 protocol ButtonViewModelDelegate: AnyObject {
     func didTapDigit(_ digit: String)
     func didTapUnaryOperation(_ operation: OperationType)
@@ -63,16 +68,16 @@ class ButtonViewModel: ObservableObject {
     // MARK: Public UI methods
     func getButtonWidth(width: CGFloat) -> CGFloat {
         let itemSize = CGFloat(item.size)
-        return (width * itemSize) + (itemSize - 1) * 16
+        return (width * itemSize) + (itemSize - 1) * Dimensions.defaultSpacing
     }
     
     func getFontSize() -> CGFloat {
         switch item.keyType.title {
         case OperationType.division.rawValue,
              OperationType.minus.rawValue:
-            return 44
+            return Dimensions.largeFontSize
         default:
-            return 29
+            return Dimensions.defaultFontSize
         }
     }
     
