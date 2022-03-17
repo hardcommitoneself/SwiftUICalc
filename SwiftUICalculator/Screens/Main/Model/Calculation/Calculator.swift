@@ -29,8 +29,7 @@ class Calculator {
     
     // MARK: Input handling methods
     func handleDigit(withValue digit: String) {
-        transitionTo(state: state.handleDigit(calculator: self,
-                                              withValue: digit))
+        transitionTo(state: state.handleDigit(self, withValue: digit))
         delegate?.calculatorDidResetUI()
     }
     
@@ -41,31 +40,32 @@ class Calculator {
             resetCalculator()
             transitionTo(state: BeforeCalculationState())
         case .toggleSign:
-            transitionTo(state: state.handleToggleSign(calculator: self,
-                                                       number: number))
+            transitionTo(state: state.handleToggleSign(self, ofNumber: number))
         case .percent:
-            transitionTo(state: state.handlePercent(calculator: self,
-                                                    number: number))
+            transitionTo(state: state.handlePercent(self, ofNumber: number))
         default: ()
         }
     }
     
     func handlePrimaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        transitionTo(state: state.handlePrimaryOperation(calculator: self,
-                                                         ofType: type,
-                                                         number: number))
+        transitionTo(
+            state: state.handlePrimaryOperation(self,
+                                                ofType: type,
+                                                withNumber: number))
         delegate?.calculatorDidResetUI()
     }
     
     func handleSecondaryOperation(ofType type: OperationType, number: Decimal? = nil) {
-        transitionTo(state: state.handleSecondaryOperation(calculator: self,
-                                                           ofType: type,
-                                                           number: number))
+        transitionTo(
+            state: state.handleSecondaryOperation(self,
+                                                  ofType: type,
+                                                  withNumber: number))
         delegate?.calculatorDidResetUI()
     }
     
     func handleEqualOperation(number: Decimal? = nil) {
-        transitionTo(state: state.handleEqualOperation(calculator: self, number: number))
+        transitionTo(
+            state: state.handleEqualOperation(self, withNumber: number))
         delegate?.calculatorDidResetUI()
     }
     
