@@ -10,8 +10,10 @@ protocol CalculatorDelegate: AnyObject {
 
 class Calculator {
     
+    // MARK: Public fields
     weak var delegate: CalculatorDelegate?
     
+    // MARK: Private fields
     private var currentResult: Decimal
     private var storedNumber: Decimal
     private var lastSecondaryOperation: OperationType
@@ -19,6 +21,7 @@ class Calculator {
     
     private var state: State
     
+    // MARK: Initialization
     init() {
         state = BeforeCalculationState()
         currentResult = 0
@@ -27,7 +30,7 @@ class Calculator {
         storedOperation = .plus
     }
     
-    // MARK: Input handling methods
+    // MARK: Public input handling methods
     func handleDigit(withValue digit: String) {
         transitionTo(state: state.handleDigit(self, withValue: digit))
         delegate?.calculatorDidResetUI()
@@ -69,7 +72,7 @@ class Calculator {
         delegate?.calculatorDidResetUI()
     }
     
-    // MARK: Delegate wrapper methods
+    // MARK: Public delegate wrapper methods
     func replaceText(with text: String) {
         delegate?.calculator(didReplaceTextWith: text)
     }

@@ -10,18 +10,23 @@ protocol ButtonViewModelDelegate: AnyObject {
 
 class ButtonViewModel: ObservableObject {
     
+    // MARK: Published fields
     @Published var backgroundColor: Color
     @Published var foregroundColor: Color
     @Published var title: String
     
+    // MARK: Public fields
     weak var delegate: ButtonViewModelDelegate?
     
+    // MARK: Private fields
     private var item: ItemInfo
     
+    // MARK: Properties
     private var operationType: OperationType {
         item.keyType.operationType ?? OperationType.equal
     }
     
+    // MARK: Initialization
     init(item: ItemInfo) {
         self.item = item
         title = item.keyType.title
@@ -37,6 +42,7 @@ class ButtonViewModel: ObservableObject {
         }
     }
     
+    // MARK: Public methods
     func action() {
         switch item.keyType {
         case .number:
@@ -54,7 +60,7 @@ class ButtonViewModel: ObservableObject {
         }
     }
     
-    // MARK: UI methods
+    // MARK: Public UI methods
     func getButtonWidth(width: CGFloat) -> CGFloat {
         let itemSize = CGFloat(item.size)
         return (width * itemSize) + (itemSize - 1) * 16
@@ -75,6 +81,7 @@ class ButtonViewModel: ObservableObject {
         foregroundColor = Colors.white
     }
     
+    // MARK: Private UI methods
     private func colorizeOperationButton() {
         backgroundColor = Colors.lightGray
         foregroundColor = Colors.darkBlue

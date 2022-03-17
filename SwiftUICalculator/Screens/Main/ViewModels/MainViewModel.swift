@@ -2,11 +2,14 @@ import SwiftUI
 
 final class MainViewModel: ObservableObject {
     
+    // MARK: Published fields
     @Published private(set) var calculationText: String
     
+    // MARK: Private fields
     private var calculator: Calculator
     private var itemViewModels: [[ButtonViewModel]] = [[]]
     
+    // MARK: Properties
     var columnCount: Int {
         4
     }
@@ -23,6 +26,7 @@ final class MainViewModel: ObservableObject {
         itemViewModels.compactMap { $0.last }
     }
     
+    // MARK: Initialization
     init() {
         calculator = Calculator()
         calculationText = "0"
