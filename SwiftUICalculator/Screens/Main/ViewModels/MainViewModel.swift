@@ -28,7 +28,7 @@ final class MainViewModel: ObservableObject {
     }
     
     // MARK: Initialization
-    init(format: CalculatorFormat = .portrait) {
+    init(format: CalculatorFormatter = .portrait) {
         calculator = Calculator()
         calculationString = CalculationString(Strings.calculationPlaceholder)
         calculationText = Strings.calculationPlaceholder

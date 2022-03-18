@@ -1,17 +1,17 @@
 import Foundation
 
-enum CalculatorFormat {
+enum CalculatorFormatter {
     case portrait
     
     var items: [[ItemInfo]] {
         switch self {
         case .portrait:
-            return CalculatorFormat.portraitItems
+            return CalculatorFormatter.portraitItems
         }
     }
 }
 
-private extension CalculatorFormat {
+private extension CalculatorFormatter {
     private static let portraitItems = [
         [
             ItemInfo(keyType: .unaryOperation(OperationType.allClear),

@@ -33,7 +33,7 @@
 		A988212D27E3CCAA0012604F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988212C27E3CCAA0012604F /* Formatters.swift */; };
 		A988212F27E3CCE10012604F /* Numerics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988212E27E3CCE10012604F /* Numerics.swift */; };
 		A988213227E3CE920012604F /* CalculationString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988213127E3CE920012604F /* CalculationString.swift */; };
-		A988213427E3E0B60012604F /* CalculatorFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988213327E3E0B60012604F /* CalculatorFormat.swift */; };
+		A988213427E3E0B60012604F /* CalculatorFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988213327E3E0B60012604F /* CalculatorFormatter.swift */; };
 		A988213627E3E5890012604F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988213527E3E5890012604F /* Strings.swift */; };
 		A988213827E3E63C0012604F /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988213727E3E63C0012604F /* Dimensions.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +49,7 @@
 		A988212C27E3CCAA0012604F /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		A988212E27E3CCE10012604F /* Numerics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numerics.swift; sourceTree = "<group>"; };
 		A988213127E3CE920012604F /* CalculationString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationString.swift; sourceTree = "<group>"; };
-		A988213327E3E0B60012604F /* CalculatorFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorFormat.swift; sourceTree = "<group>"; };
+		A988213327E3E0B60012604F /* CalculatorFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorFormatter.swift; sourceTree = "<group>"; };
 		A988213527E3E5890012604F /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A988213727E3E63C0012604F /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		A9A2AAC027BA2A5A009AAE69 /* SwiftUICalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUICalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +219,7 @@
 				A9A2AAEB27C00E40009AAE69 /* KeyType.swift */,
 				A9A2AAED27C00FFA009AAE69 /* ItemInfo.swift */,
 				A9A2AAF127C01182009AAE69 /* OperationType.swift */,
-				A988213327E3E0B60012604F /* CalculatorFormat.swift */,
+				A988213327E3E0B60012604F /* CalculatorFormatter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,7 +303,7 @@
 				A919990227DE68F7003580B2 /* Colors.swift in Sources */,
 				A919990327DE68F7003580B2 /* Calculator.swift in Sources */,
 				A919990527DE68F7003580B2 /* BeforeCalculationState.swift in Sources */,
-				A988213427E3E0B60012604F /* CalculatorFormat.swift in Sources */,
+				A988213427E3E0B60012604F /* CalculatorFormatter.swift in Sources */,
 				A919990627DE68F7003580B2 /* AfterFirstOperationState.swift in Sources */,
 				A919990727DE68F7003580B2 /* AfterSecondNumberState.swift in Sources */,
 				A919990827DE68F7003580B2 /* AfterPrimaryOperationState.swift in Sources */,
