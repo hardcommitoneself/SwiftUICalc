@@ -5,6 +5,11 @@ class CalculationString {
     // MARK: Fields
     private var value: String
     
+    // MARK: Properties
+    var valueNumber: Decimal? {
+        Decimal(string: value.replacingOccurrences(of: ",", with: "."))
+    }
+    
     required init(_ value: String) {
         self.value = value
     }
@@ -33,6 +38,7 @@ class CalculationString {
         }
         
         value = String(describing: number)
+            .replacingOccurrences(of: ".", with: ",")
         return value
     }
     
@@ -66,7 +72,7 @@ class CalculationString {
     
     // MARK: Private methods
     private func canAppend(text: String) -> Bool {
-        (text != "," || !text.contains(",")) && countDigits(in: value) < 9
+        (text != "," || !value.contains(",")) && countDigits(in: value) < 9
     }
     
     private func countDigits(in text: String) -> Int {

@@ -19,10 +19,6 @@ final class MainViewModel: ObservableObject {
         itemViewModels.count
     }
     
-    private var numberFromCalculationText: Decimal? {
-        Decimal(string: calculationText.replacingOccurrences(of: ",", with: "."))
-    }
-    
     private var operationViewModels: [ButtonViewModel] {
         itemViewModels.compactMap { $0.last }
     }
@@ -66,22 +62,25 @@ extension MainViewModel: ButtonViewModelDelegate {
     }
     
     func didTapUnaryOperation(_ operation: OperationType) {
-        calculator.handleUnaryOperation(ofType: operation,
-                                        number: numberFromCalculationText)
+        calculator.handleUnaryOperation(
+            ofType: operation,
+            number: calculationString.valueNumber)
     }
     
     func didTapPrimaryOperation(_ operation: OperationType) {
-        calculator.handlePrimaryOperation(ofType: operation,
-                                          number: numberFromCalculationText)
+        calculator.handlePrimaryOperation(
+            ofType: operation,
+            number: calculationString.valueNumber)
     }
     
     func didTapSecondaryOperation(_ operation: OperationType) {
-        calculator.handleSecondaryOperation(ofType: operation,
-                                            number: numberFromCalculationText)
+        calculator.handleSecondaryOperation(
+            ofType: operation,
+            number: calculationString.valueNumber)
     }
     
     func didTapEqual() {
-        calculator.handleEqualOperation(number: numberFromCalculationText)
+        calculator.handleEqualOperation(number: calculationString.valueNumber)
     }
 }
 
