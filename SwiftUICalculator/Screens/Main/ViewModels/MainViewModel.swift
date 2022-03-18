@@ -47,11 +47,16 @@ final class MainViewModel: ObservableObject {
         itemViewModels[rowIndex][column]
     }
     
-    func getColumnWidth(_ containerWidth: CGFloat) -> CGFloat {
-        let padWidth = containerWidth
+    func getCellSize(inContainerOfSize containerSize: CGSize) -> CGSize {
+        let padWidth = containerSize.width
                         - CGFloat(columnCount - 1)
                         * Dimensions.defaultSpacing
-        return padWidth / CGFloat(columnCount)
+        let padHeight = containerSize.height
+                        - CGFloat(rowsCount - 1)
+                        * Dimensions.defaultSpacing
+        
+        return CGSize(width: padWidth / CGFloat(columnCount),
+                      height: padHeight / CGFloat(rowsCount))
     }
 }
 

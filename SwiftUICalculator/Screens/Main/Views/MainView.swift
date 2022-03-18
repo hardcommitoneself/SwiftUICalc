@@ -18,7 +18,7 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
-            Colors.lightGray.ignoresSafeArea()
+            Color.lightGray.ignoresSafeArea()
             VStack(alignment: .leading,
                    spacing: Dimensions.mediumSpacing) {
                 Text(Strings.calculatorTitle)
@@ -26,8 +26,8 @@ struct MainView: View {
                 ZStack {
                     LinearGradient(
                         colors: [
-                            Colors.lightGreen,
-                            Colors.darkGreen
+                            .lightGreen,
+                            .darkGreen
                         ],
                         startPoint: .leading,
                         endPoint: .trailing
@@ -44,7 +44,8 @@ struct MainView: View {
                 .frame(height: Dimensions.calculationFrameHeight)
                 
                 GeometryReader { geometryReader in
-                    let columnWidth = viewModel.getColumnWidth(geometryReader.size.width)
+                    let cellSize = viewModel.getCellSize(
+                        inContainerOfSize: geometryReader.size)
                     
                     VStack(spacing: Dimensions.defaultSpacing) {
                         ForEach(0..<viewModel.rowsCount, id:\.self) { row in
@@ -56,7 +57,7 @@ struct MainView: View {
                                                           column: column)
                                     
                                     ButtonView(viewModel: itemViewModel,
-                                               columnWidth: columnWidth)
+                                               cellSize: cellSize)
                                 }
                             }
                         }

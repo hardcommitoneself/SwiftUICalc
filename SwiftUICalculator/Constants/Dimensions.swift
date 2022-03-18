@@ -2,7 +2,7 @@ import SwiftUI
 
 enum Dimensions {
     static let mediumPadding: CGFloat = 24
-    static let largePadding: CGFloat = 64
+    static let largePadding: CGFloat = 32
     
     static let defaultSpacing: CGFloat = 16
     static let mediumSpacing: CGFloat = 25

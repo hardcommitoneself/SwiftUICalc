@@ -7,14 +7,14 @@ private extension Dimensions {
 
 struct ButtonView: View {
     
-    private let columnWidth: CGFloat
+    private let cellSize: CGSize
     
     @ObservedObject private var viewModel: ButtonViewModel
     
     init(viewModel: ButtonViewModel,
-         columnWidth: CGFloat) {
+         cellSize: CGSize) {
         self.viewModel = viewModel
-        self.columnWidth = columnWidth
+        self.cellSize = cellSize
     }
     
     var body: some View {
@@ -22,12 +22,13 @@ struct ButtonView: View {
             viewModel.action()
         } label: {
             Text(viewModel.title)
-                .frame(width: viewModel.getButtonWidth(width: columnWidth), height: columnWidth)
+                .frame(width: viewModel.getButtonWidth(width: cellSize.width),
+                       height: cellSize.height)
                 .foregroundColor(viewModel.foregroundColor)
                 .background(viewModel.backgroundColor)
                 .cornerRadius(Dimensions.mediumCornerRadius)
                 .font(.montserrat(size: viewModel.getFontSize()))
-                .shadow(color: Colors.shadowBlue,
+                .shadow(color: .shadowBlue,
                         radius: Dimensions.shadowBlur,
                         x: Dimensions.shadowOffset,
                         y: Dimensions.shadowOffset)
@@ -42,7 +43,8 @@ struct ButtonView: View {
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
         ButtonView(
-            viewModel: ButtonViewModel(item: ItemInfo(keyType: .number("0"), size: 1)),
-            columnWidth: 64)
+            viewModel: ButtonViewModel(
+                item: ItemInfo(keyType: .number("0"), size: 1)),
+            cellSize: CGSize(width: 64, height: 64))
     }
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum Colors {
+extension Color {
     static let blackText = Color("blackText")
     static let shadowBlack = Color.black.opacity(0.1)
     static let darkBlue = Color("darkBlue")
@@ -8,5 +8,4 @@ enum Colors {
     static let lightGray = Color("lightGray")
     static let lightGreen = Color("lightGreen")
     static let darkGreen = Color("darkGreen")
-    static let white = Color.white
 }

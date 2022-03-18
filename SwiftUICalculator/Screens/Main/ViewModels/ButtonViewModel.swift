@@ -38,12 +38,12 @@ class ButtonViewModel: ObservableObject {
         switch item.keyType {
         case .primaryOperation,
              .secondaryOperation:
-            backgroundColor = Colors.darkBlue
-            foregroundColor = Colors.white
+            backgroundColor = .darkBlue
+            foregroundColor = .white
         case .number,
              .unaryOperation:
-            backgroundColor = Colors.lightGray
-            foregroundColor = Colors.darkBlue
+            backgroundColor = .lightGray
+            foregroundColor = .darkBlue
         }
     }
     
@@ -82,13 +82,13 @@ class ButtonViewModel: ObservableObject {
     }
     
     func resetOperationButtonColor() {
-        backgroundColor = Colors.darkBlue
-        foregroundColor = Colors.white
+        backgroundColor = .darkBlue
+        foregroundColor = .white
     }
     
     // MARK: Private UI methods
     private func colorizeOperationButton() {
-        backgroundColor = Colors.lightGray
-        foregroundColor = Colors.darkBlue
+        backgroundColor = .lightGray
+        foregroundColor = .darkBlue
     }
 }
